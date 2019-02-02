@@ -115,19 +115,24 @@ title: Notes for Designing Data Intensive Applications
 
 ### Query Languages for Data
 
-- Declarative
-  - Specify the pattern of data you want, not how to achieve that goal
-  - Relies on database system's query optimizer to figure how to do that
-  - Hides implementation details of database engine (E.G. automatic operations)
-  - Lends themselves to parallel execution
-- Imperative
-  - Tells computer to perform certain operations in a certain order
-- MapReduce
-  - Neither a declarative query language nor a fully imperative query API
-  - Based on `map` and `reduce` functions that exist in functional languages
-  - Must be pure functions
-  - Easy to distribute and parallelize
-  - Have to write two carefully coordinate functions, perhaps harder than writing a single query
+Declarative
+
+- Specify the pattern of data you want, not how to achieve that goal
+- Relies on database system's query optimizer to figure how to do that
+- Hides implementation details of database engine (E.G. automatic operations)
+- Lends themselves to parallel execution
+
+Imperative
+
+- Tells computer to perform certain operations in a certain order
+
+MapReduce
+
+- Neither a declarative query language nor a fully imperative query API
+- Based on `map` and `reduce` functions that exist in functional languages
+- Must be pure functions
+- Easy to distribute and parallelize
+- Have to write two carefully coordinate functions, perhaps harder than writing a single query
 
 ## Storage
 
@@ -351,15 +356,15 @@ There are problems related to language-specific formats:
 
 #### Asynchronous Message-Passing Systems
 
-- a client's request is delivered to another process with low latency through a _message broker_
+- A client's request is delivered to another process with low latency through a _message broker_
   which stores the message temporarily
-- message broker can act as buffer if recipient is unavailable or overloaded
-  - it can automatically redeliver messages
-  - it avoids the sender needing to know the IP address and port number of the recipient
-  - it allows one message to be sent to several recipients
-  - it decouples the sender from the recipient
-- messages are one way
-- one process sends message to a named _queue_ or _topic_ and the broker ensures that the message is
+- Message broker can act as buffer if recipient is unavailable or overloaded
+  - It can automatically redeliver messages
+  - It avoids the sender needing to know the IP address and port number of the recipient
+  - It allows one message to be sent to several recipients
+  - It decouples the sender from the recipient
+- Messages are one way
+- One process sends message to a named _queue_ or _topic_ and the broker ensures that the message is
   delivered to _consumers_ or _subscribers_
 
 ### Actor Model
@@ -548,16 +553,19 @@ Reasons to distribute a database across multiple machines:
 
 ### Secondary Indexes
 
-- _Document-partitioned secondary indexes_: Keep secondary indexes between different partitions
-  completely separate
-  - Known as a _local index_
-  - Have to query all partitions (_scatter/gather_)
-  - Reads are slower and suffer from tail latency amplification
-- _Term-partitioned secondary indexes_: The term we are looking for determines the partition of the
-  index
-  - Known as a _global index_
-  - Makes reads more efficient
-  - Writes are slower and more complicated and may affect multiple partitions of the index
+Document-partitioned secondary indexes
+
+- Keep secondary indexes between different partitions completely separate
+- Known as a _local index_
+- Have to query all partitions (_scatter/gather_)
+- Reads are slower and suffer from tail latency amplification
+
+Term-partitioned secondary indexes
+
+- The term we are looking for determines the partition of the index
+- Known as a _global index_
+- Makes reads more efficient
+- Writes are slower and more complicated and may affect multiple partitions of the index
 
 ### Rebalancing Partitions
 
@@ -605,20 +613,27 @@ Reasons to distribute a database across multiple machines:
 
 ### ACID
 
-- Atomicity
-  - If actions are grouped into a transaction, the actions as a whole succeeds or fails together
-  - If transaction is aborted then nothing has changed in database
-- Consistency
-  - If a transaction is applied on a valid database, then the database will still be valid after the
-    transaction is committed
-  - Invariants of database (but not necessarily of application) are preserved
-- Isolation
-  - Concurrently executing transactions are isolated from each other
-  - Ensures that when transactions have been committed, the result is the same if they had run
-    serially
-- Durability
-  - Ensures that if transaction has committed successfully, the data it has written will not be
-    forgotten even in the case of a crash
+Atomicity
+
+- If actions are grouped into a transaction, the actions as a whole succeeds or fails together
+- If transaction is aborted then nothing has changed in database
+
+Consistency
+
+- If a transaction is applied on a valid database, then the database will still be valid after the
+  transaction is committed
+- Invariants of database (but not necessarily of application) are preserved
+
+Isolation
+
+- Concurrently executing transactions are isolated from each other
+- Ensures that when transactions have been committed, the result is the same if they had run
+  serially
+
+Durability
+
+- Ensures that if transaction has committed successfully, the data it has written will not be
+  forgotten even in the case of a crash
 
 ### Multi-Object Transactions
 
@@ -887,69 +902,86 @@ Reasons to distribute a database across multiple machines:
 
 ## Consistency Models
 
-- Reading Your Own Writes
-  - Users should be able to immediately see their writes (_read-after-write consistency_)
-  - Techniques to implement read-after-write consistency
-    - When reading something a user may have modified, read from leader; otherwise, read from
-      follower
-    - Make immediate read request go to leader (E.G. all read requests go to leader for one minute
-      after the last update)
-    - Client can remember the timestamp of most recent write and then system can ensure that replica
-      reflects updates at least until the timestamp
-  - Might want to provide _cross-device_ read-after-write consistency
-    - Another device does not know the timestamp of update on the other device
-- Monotonic Reads
-  - If a process preforms read $r_1$, then $r_2$, then $r_2$ cannot observe a state prior to the
-    state reflected in $r_1$
-  - Ensure that user always makes their reads from the same replica
-    - What happens if replica fails?
-- Monotonic Writes
-  - If a process performs write $w_1$ then $w_2$, then all processes observe $w_1$ before $w_2$.
-- Consistent Prefix Reads
-  - Reads should return some prefix of writes with no gaps
-  - There is possibly no global ordering of writes
-- Eventual consistency
-  - If no update takes a very long time, all replicas will eventually become consistent
-  - Is only a liveness guarantee, _strong eventual consistency_ adds the safety guarantee that if
-    any two nodes that have received the same (unordered) set of updates will be the same state
-    - CRDTs are a common way of ensuring strong eventual consistency
-- PRAM consistency
-  - Enforces that any pair of writes executed by a single process are observed everywhere in the
-    same order
-- Casual consistency
-  - Only casually related operations must occur in order
-  - Independent casual chains could execute in any relative order
-- Sequential Consistency
-  - Order is enforced on one node
-  - Sequential consistency is essentially linearizability without real-time constraint - processes
-    are allowed to skew in time
-- Linearizability
-  - Basic idea is make a system appear as if there were only one copy of the data and all operations
-    on it are atomic
-  - As soon as one client completes a write, all client reading from the database must be able to
-    see the value just written
-  - The invocations and responses of requests in a system can be ordered to yield a sequential
-    history that is valid (E.G. consecutive reads can't return different results) and if a response
-    preceded an invocation in the original history, it must also precede it in the sequential
-    reordering
-    - Concurrent operations can be reordered
-  - Is a single-object property
-  - The combination of both serializability and linearizability is called _strict serializability_
-    - Is a multi-object property
-  - Useful to guarantee that there is only one leader
-  - Linearizable coordination services like Apache ZooKeeper and etcd are often used to implement
-    distributed locks and leader election
-  - Analysis of replication methods:
-    - Single-leader replication: potential to be linearizable
-    - Consensus algorithms: linearizable
-    - Multi-leader replication: not linearizable because leaders concurrently process writes and
-      asynchronously replicate them
-    - Leaderless replication: probably not linearizable
-  - Strict quorum can be made linearizable if readers perform read repair synchronously before
-    returning results to application
-  - CAP Theorem: when a network fault occurs, you have to choose between either linearizability or
-    total availability
-  - Linearizability is slow -- multi-core CPU is not linearizable for performance
+Reading Your Own Writes
+
+- Users should be able to immediately see their writes (_read-after-write consistency_)
+- Techniques to implement read-after-write consistency
+  - When reading something a user may have modified, read from leader; otherwise, read from
+    follower
+  - Make immediate read request go to leader (E.G. all read requests go to leader for one minute
+    after the last update)
+  - Client can remember the timestamp of most recent write and then system can ensure that replica
+    reflects updates at least until the timestamp
+- Might want to provide _cross-device_ read-after-write consistency
+  - Another device does not know the timestamp of update on the other device
+
+Monotonic Reads
+
+- If a process preforms read $r_1$, then $r_2$, then $r_2$ cannot observe a state prior to the
+  state reflected in $r_1$
+- Ensure that user always makes their reads from the same replica
+  - What happens if replica fails?
+
+Monotonic Writes
+
+- If a process performs write $w_1$ then $w_2$, then all processes observe $w_1$ before $w_2$.
+
+Consistent Prefix Reads
+
+- Reads should return some prefix of writes with no gaps
+- There is possibly no global ordering of writes
+
+Eventual consistency
+
+- If no update takes a very long time, all replicas will eventually become consistent
+- Is only a liveness guarantee, _strong eventual consistency_ adds the safety guarantee that if
+  any two nodes that have received the same (unordered) set of updates will be the same state
+  - CRDTs are a common way of ensuring strong eventual consistency
+
+PRAM consistency
+
+- Enforces that any pair of writes executed by a single process are observed everywhere in the
+  same order
+
+Casual consistency
+
+- Only casually related operations must occur in order
+- Independent casual chains could execute in any relative order
+
+Sequential Consistency
+
+- Order is enforced on one node
+- Sequential consistency is essentially linearizability without real-time constraint - processes
+  are allowed to skew in time
+
+Linearizability
+
+- Basic idea is make a system appear as if there were only one copy of the data and all operations
+  on it are atomic
+- As soon as one client completes a write, all client reading from the database must be able to
+  see the value just written
+- The invocations and responses of requests in a system can be ordered to yield a sequential
+  history that is valid (E.G. consecutive reads can't return different results) and if a response
+  preceded an invocation in the original history, it must also precede it in the sequential
+  reordering
+  - Concurrent operations can be reordered
+- Is a single-object property
+- The combination of both serializability and linearizability is called _strict serializability_
+  - Is a multi-object property
+- Useful to guarantee that there is only one leader
+- Linearizable coordination services like Apache ZooKeeper and etcd are often used to implement
+  distributed locks and leader election
+- Analysis of replication methods:
+  - Single-leader replication: potential to be linearizable
+  - Consensus algorithms: linearizable
+  - Multi-leader replication: not linearizable because leaders concurrently process writes and
+    asynchronously replicate them
+  - Leaderless replication: probably not linearizable
+- Strict quorum can be made linearizable if readers perform read repair synchronously before
+  returning results to application
+- CAP Theorem: when a network fault occurs, you have to choose between either linearizability or
+  total availability
+- Linearizability is slow -- multi-core CPU is not linearizable for performance
 
 ## Ordering Guarantees
 
@@ -1123,7 +1155,7 @@ Reasons to distribute a database across multiple machines:
 - Most consensus algorithms assume fixed set of nodes
   - _Dynamic membership_ extensions are less understood
 - Reply on timeouts to detect failed nodes
-- Designing algorithms that are most robust to unreliable networks is still an open research problem
+- Designing algorithms that are more robust to unreliable networks is still an open research problem
 
 ## Membership and Coordination Services
 
@@ -1147,7 +1179,7 @@ Reasons to distribute a database across multiple machines:
 - Two broad categories of systems that store and process data
   1. _Systems of record_ hold authoritative version of your data
   2. _Derived data systems_ are the result of taking some existing data from another system and
-  transforming or processing it in some way
+     transforming or processing it in some way
 - Distinction between the two depends not on the too, but on how you use it
 - Three different types of systems
   1. _Services (online systems)_ tries to minimize response time
@@ -1157,8 +1189,8 @@ Reasons to distribute a database across multiple machines:
      - Often scheduled periodically
   3. _Stream processing systems (near-real-time systems)_ are somewhere between online and offline
      systems
-    - Stream jobs operate on events shortly after they happen and have lower latency than batch
-      systems
+  - Stream jobs operate on events shortly after they happen and have lower latency than batch
+    systems
 
 ## Batch Processing
 
@@ -1173,4 +1205,100 @@ Reasons to distribute a database across multiple machines:
 - Unix tools have a uniform interface
 - Biggest limitation of Unix tools is that they run only a single machine
 
-## MapReduce and Distributed Filesystems
+### MapReduce and Distributed Filesystems
+
+#### HDFS
+
+- A central server called _NameNode_ keeps track of the location of file blocks
+- File blocks are replicated on multiple machines using _erasure coding_ for better storage
+  efficiency
+
+#### MapReduce
+
+- MapReduce jobs are similar to Unix tools in the sense that they take in immutable input and
+  produce output without any side effects
+  - MapReduce jobs read and write files on a distributed filesystem (E.G. HDFS, GFS)
+- Have to implement two callback functions
+  - Mapper: Called once for each input record and it may generate any number of key-value pairs
+  - Reducer: Takes the key-value pairs produced by the mappers and collects all the values belonging
+    to the same key and calls the reducer with na iterator over the collection of values
+- Scheduler tries to run the mapper on one of the machines that stores a replica of the input file
+  (_putting the computation near the data_)
+- Each mapper partitions its output by reducer based on the hash of the key
+- Writes each partition to a sorted file on mapper's local disk
+- Reducers fetch the output files from the mapper
+- Process of sorting and copying data partitions is called a _shuffle_
+- MapReduce jobs are chained together into _workflows_ (similar to piping with Unix tools)
+- Common operations like `JOIN ON` and `GROUP BY` can be done with reduce-side joins or map-side
+  joins
+  - Reduce-side joins: Actual join logic is done in the reducers while mappers take the role of
+    preparing the input data
+  - Map-side joins
+    - If a large dataset is joined with a small dataset, then just load the small dataset in memory
+      (_broadcast hash join_)
+    - If inputs to map-side join are partitioned in the same way, each mapper can load a smaller
+      amount of data into its hash table
+    - If inputs are sorted by the same key, mappers can perform merge operation that would be
+      normally done by reducer
+- There could be skew in the case of _hot keys_ or _linch pin objects_
+  - Can let multiple reducers handle a single hot key
+- Uses
+  - Originally used by Google for building search indexes
+  - Build machine learning systems such as classifiers and recommendation systems
+  - Build a database inside the batch job
+- Hadoop allows for indiscriminately dumping data into HDFS
+  - Figure out how to process it later
+  - Shifts the burden of interpreting the data from producer to consumer (schema-on-read)
+  - _Sushi principle_: raw data is better
+- MapReduce can handle frequently faults as it simply needs to rerun the mapper and reducer tasks
+  that failed since the input is immutable
+
+### Beyond MapReduce
+
+#### Problems
+
+- If job is only used as the input to other job, there is a lot of _materialization_
+- Output cannot be consumed until the entire task has been finished
+- Mappers are often redundant: they just read back the same file that was written
+- Storing intermediate state in a distributed filesystem is overkill for temporary data
+
+#### Alternatives
+
+- Other _dataflow engines_ have been designed to solve these problems (E.G. Spark, Tez, Flink)
+- Functions do not take strict roles of alternating map and reduce
+- Functions are called _operators_ and the engine provides different ways to compose these
+  operators together
+- Advantages
+  - Expensive operations like sorting are only done when they are required
+  - All joins and data dependencies are explicitly declared to scheduler can make locality
+    optimizations
+  - Can keep intermediate state to be kept in memory
+  - Operators can begin as soon as their input is ready
+- Fault tolerance
+  - Since writing intermediate state is avoided, it must be recomputed from other data that is still
+    available
+  - It is ideal for computation to be deterministic, otherwise we would have to kill downstream jobs
+    to prevent conflicts
+
+#### Graphs and Iterative Processing
+
+- Data is in the form of a graph
+- Algorithms on graphs are expressed in an iterative style
+  1. Scheduler runs a batch process to calculate one step of the algorithm
+  2. Scheduler checks if the algorithm has finished based on completion condition
+  3. If it has not yet finished, go back to step 1
+- _Pregel_ model
+  - One vertex can send a message to another vertex
+  - In each iteration, a function is called for each vertex, passing it all the messages that were
+    sent to it
+  - A vertex remembers its state in memory from one iteration to the next (only processes new
+    incoming messages)
+- Fault tolerance
+  - Checkpoint the state of all vertices at the end of an iteration (I.E. writing their state to
+    durable storage)
+
+#### High-Level APIs and Languages
+
+- Move toward declarative query languages
+- Frameworks can analyze the properties of the join inputs and automatically decide which join
+  algorithm is most suited for the task
