@@ -113,7 +113,7 @@ title: Notes for Designing Data Intensive Applications
   - Is a subset of Prolog
   - Define rules about new predicates and complex queries can be built up a small piece at a time
 
-### Query Languages for Data
+### Query Languages
 
 Declarative
 
@@ -751,7 +751,7 @@ Durability
       - Alert another transactions that their reads are out-of-date
       - Transaction should abort if another committed transaction alerted it
 
-# The Trouble with Distributed Systems
+## The Trouble with Distributed Systems
 
 - _Partial failure_: Some parts of system are broken in some unpredictable way, while other parts
   are working fine
@@ -762,7 +762,7 @@ Durability
   - Error-correcting codes tolerating some wrong bits
   - Transmission Control Protocol is built on top of the Internet Protocol (IP)
 
-## Unreliable Networks
+### Unreliable Networks
 
 - The internet and most internal networks are _asynchronous packet networks_ and many problems can
   arise with sending and receiving a message
@@ -775,7 +775,7 @@ Durability
 - Impossible to tell why you didn't receive request
 - Usually handle this issue with timeouts
 
-### Network Partitions
+#### Network Partitions
 
 - One part of network is cut off from the rest due to a network fault
 - Systems need to detect faulty nodes
@@ -784,7 +784,7 @@ Durability
     followers needs to be promoted to be the new leader
 - Hard to get feedback to explicitly tell you that something is not working
 
-### Timeouts and Unbounded Delays
+#### Timeouts and Unbounded Delays
 
 - Timeout is the only sure way of detecting a fault
 - Long timeout means a long wait until a node is declared dead, short timeout has a risk of
@@ -808,7 +808,7 @@ Durability
   _bursty traffic_
   - Packets have to be queue but it maximizes utilization of network
 
-## Unreliable Clocks
+### Unreliable Clocks
 
 - Each machine has its own clock (usually quartz crystal oscillator) which are not perfectly accurate
 - It is possible to synchronize clocks to some degree (E.G. Network Time Protocol (NTP))
@@ -838,7 +838,7 @@ Durability
   - To ensure that transaction timestamps reflect causality, Spanner waits for length of confidence
     interval before committing a read-write transaction
 
-## Process Pauses
+### Process Pauses
 
 - A node in a distributed system may be paused for an unbounded amount of time
   - JVM have a garbage collector that occasionally needs to stop all running threads
@@ -854,14 +854,14 @@ Durability
   - Let other nodes handle request from clients while GC pause happens
   - Some latency-sensitive financial systems use this approach
 
-## Knowledge, Truth, and Lies
+### Knowledge, Truth, and Lies
 
 - Truth is defined by the majority
 - Distributed algorithms rely on a _quorum_ (voting among the nodes)
 - Clients use a lock or lease to have protected access to resource
 - A _fencing token_ is a number that increases every time a lock is granted
 
-## Byzantine Faults
+### Byzantine Faults
 
 - Nodes are assumed to be honest
 - Distributed system problems are much harder if there is a risk that nodes lie
@@ -872,7 +872,7 @@ Durability
 - Most Byzantine fault-tolerant algorithms require super-majority of more than two-third of the nodes
   to be functioning correctly
 
-## System Model and Reality
+### System Model and Reality
 
 - Three system models
   1. Synchronous model
@@ -898,9 +898,9 @@ Durability
 - Theoretical analysis and empirical testing are equally important
 - Abstract models help distill down the complexity of real systems
 
-# Consistency and Consensus
+## Consistency and Consensus
 
-## Consistency Models
+### Consistency Models
 
 Reading Your Own Writes
 
@@ -983,7 +983,7 @@ Linearizability
   total availability
 - Linearizability is slow -- multi-core CPU is not linearizable for performance
 
-## Ordering Guarantees
+### Ordering Guarantees
 
 - Causality imposes an ordering on events: cause comes before effect
 - Causality is a partial ordering (occurred before, after or concurrently)
@@ -1001,7 +1001,7 @@ Linearizability
   - Can only compare timestamps after the events have occurred
   - Cannot be used to answer immediate decision problems
 
-## Total Order Broadcast
+### Total Order Broadcast
 
 - Properties
   1. Validity: If a correct participant broadcasts a message, then all correct participants will
@@ -1021,7 +1021,7 @@ Linearizability
   - Lock service: every request to acquire the lock is appended as a message to the log with a
     sequential monotonically increasing number which becomes the fencing token
 
-## Implementing Linearizable Storage Using Total Order Broadcast
+### Implementing Linearizable Storage Using Total Order Broadcast
 
 - Linearizable writes (compare-and-set)
   - Append a message to the log with the old and new values
@@ -1034,7 +1034,7 @@ Linearizability
     be delivered to you, then perform the read operation
   - Read from a replica that is synchronously updated on writes
 
-## Implementing Total Order Broadcast Using Linearizable Storage
+### Implementing Total Order Broadcast Using Linearizable Storage
 
 - Assume you have a linearizable register that stores an integer and has an atomic increment-and-get
   operation
@@ -1042,7 +1042,7 @@ Linearizability
   linearizable register and deliver the message to all nodes
 - Process the message in sequential order with no gaps
 
-## Consensus
+### Consensus
 
 - FLP result: there is no algorithm that is always able to reach consensus if there is a risk that a
   node may crash
@@ -1054,7 +1054,7 @@ Linearizability
   - Atomic commit: nodes must agree on whether a transaction succeeded or failed so that they can
     all commit or rollback
 
-## Atomic Commit
+### Atomic Commit
 
 - Atomicity is commonly implemented by storage engine
 - Not sufficient to send commit request to all nodes and independently commit the transaction on
@@ -1065,7 +1065,7 @@ Linearizability
 - Cannot revert committed transactions, because reads on committed data must be retroactively
   reverted as well
 
-## Two-Phase Commit (2PC)
+### Two-Phase Commit (2PC)
 
 - 2PC uses a coordinator component
 - Steps
@@ -1081,7 +1081,7 @@ Linearizability
      refuse to commit when it recovers
 - _Blocking_ atomic commit because 2PC can be stuck waiting for coordinator to recover
 
-### Coordinator Failure
+#### Coordinator Failure
 
 - If coordinator fails before sending prepare requests, then participants can abort transaction
 - If participant replies yes to prepare request, it must wait to hear back from coordinator
@@ -1094,7 +1094,7 @@ Linearizability
   abort requests
 - Commit point is essentially a regular single-node atomic commit on the coordinator
 
-## Three-Phase Commit
+### Three-Phase Commit (3PC)
 
 - Assumes a network with bounded delay and nodes with bounded response times
 - In most practical systems with unbounded network delay and process pauses, no guarantee for
@@ -1102,7 +1102,7 @@ Linearizability
 - In general, non-blocking atomic commit requires _perfect failure detector_ (timeouts are not
   perfect)
 
-## Distributed Transactions in Practice
+### Distributed Transactions in Practice
 
 - Provide important safety guarantee but they are criticized for causing operational problems and
   killing performance
@@ -1114,7 +1114,7 @@ Linearizability
     processing the message is successfully committed
   - XA transactions is a standard for implementing 2PC for heterogeneous distributed transactions
 
-## Limitations of Distributed Transactions
+### Limitations of Distributed Transactions
 
 - If coordinator is not replicated, it is a single point of failure for the system
 - Coordinator is a part of the application server, and it changes the nature of the deployment since
@@ -1123,7 +1123,7 @@ Linearizability
 - Distributed transactions have tendency to amplify failures as all participants need to respond to
   successfully commit a transaction
 
-## Fault-Tolerant Consensus
+### Fault-Tolerant Consensus
 
 - Properties
   1. Uniform agreement: No two nodes decide differently
@@ -1137,7 +1137,7 @@ Linearizability
     Byzantine-faulty for there to be termination
 - Total order broadcast is equivalent to repeated rounds of consensus
 
-### Epoch Numbering and Quorums
+#### Epoch Numbering and Quorums
 
 - Every time current leader is thought dead, vote is started among nodes to elect new leader
 - Election is given an incremented epoch number (totally ordered and monotonically increasing)
@@ -1148,7 +1148,7 @@ Linearizability
 - Two rounds of voting: one to choose leader and another to vote on leader's proposal
 - Need a quorum intersection between round one and round two
 
-### Limitations of Consensus
+#### Limitations of Consensus
 
 - Process which nodes vote on proposals is a kind of synchronous replications
   - Some committed data can be potentially be lost a failover
@@ -1157,7 +1157,7 @@ Linearizability
 - Reply on timeouts to detect failed nodes
 - Designing algorithms that are more robust to unreliable networks is still an open research problem
 
-## Membership and Coordination Services
+### Membership and Coordination Services
 
 - Coordination and configuration services like ZooKeeper or etcd are not well suited for
   general-purpose databases
@@ -1302,3 +1302,5 @@ Linearizability
 - Move toward declarative query languages
 - Frameworks can analyze the properties of the join inputs and automatically decide which join
   algorithm is most suited for the task
+
+## Stream Processing
