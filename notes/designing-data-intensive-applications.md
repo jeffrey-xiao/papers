@@ -23,14 +23,14 @@ title: Notes for Designing Data Intensive Applications
 
 2. Scalability
 
-- Throughput vs. response time
+- Throughput versus response time
 - Have to consider higher percentiles (E.G. 95th, 99th, 99.9th)
 - Service level objectives (SLOs) and service level agreements (SLAs)
 - _Head-of-line blocking_: small number of slow requests can hold up processing of subsequent
   requests
 - _Tail latency amplification_: request is as slow as the slowest dependent request
 - `HdrHistogram` to measure percentiles
-- Scaling up vs. scaling out
+- Scaling up versus scaling out
 
 3. Maintainability
 
@@ -389,7 +389,7 @@ Reasons to distribute a database across multiple machines:
 - _Shared-nothing architecture_ is called _horizontal scaling_
 
 2. Fault tolerance/high availability: Can use multiple machines to give you redundancy
-3. Latency: Choose data centers that is geographically close to users to minimize network latency
+3. Latency: Choose datacenters that is geographically close to users to minimize network latency
 
 ## Replication
 
@@ -434,7 +434,7 @@ Reasons to distribute a database across multiple machines:
   - Statements could use auto-incrementing column or side effects that depends on requests being
     sent in a specific order
 - Write-ahead log: closed coupled with how storage engine stores data
-- Row-based log replication: use different log formats for replication vs. storage engine
+- Row-based log replication: use different log formats for replication versus storage engine
   - For an inserted row, the log contains new values
   - For a deleted row, the log contains information to identify row that was deleted.
   - For updated row, log contains information to uniquely identify the updated row and the new value
@@ -452,7 +452,7 @@ Reasons to distribute a database across multiple machines:
 ### Multi-Leader Replication
 
 - Natural extension to single-leader replication
-- Have a leader in each data center
+- Have a leader in each datacenter
 - Better tolerance and performance than single-leader replication
 - Writes can be concurrently modified and conflicts have to resolved
 - Clients with offline operation and collaborative editing are examples of application of
@@ -1483,7 +1483,7 @@ Atomic Commit
 
 - All outputs and side effects of processing an event take effect if and only if the processing is
   successful
-- Have to make distributed transactions to ensure exactly-once processing in the presence of faults
+- Have to make distributed transactions to ensure exactly once processing in the presence of faults
 
 Idempotence
 
@@ -1498,3 +1498,184 @@ Rebuilding State After a Failure
 - Keep state local to stream processor and replicate it periodically
 
 ## Future of Data Systems
+
+### Data Integration
+
+- There are trade-offs between solutions
+  - Derived data versus distributed transactions
+- In complex applications, we have to combine specialized tools to provide functionality and satisfy
+  different access patterns
+
+#### Limitations of Total Ordering
+
+- Totally ordered log requires all events to pass through a single leader node that decides on
+  ordering
+- If servers are spread across multiple geographically distributed datacenters, you typically
+  have a separate leader in each datacenter which implies undefined ordering of events that
+  originate in two different datacenters
+- No defined order for two events in different microservices
+- Some applications maintain client-side state that is update immediately (optimistic updating)
+  and even to continue to work offline
+
+#### Ordering Events to Capture Causality
+
+- Dependencies can arise in subtle ways
+- Logical timestamp can provide total ordering without coordination
+- Log an event to record the state of the system and give that even a unique identifier, then any
+  later events can reference that event identifier to record casual dependency
+- Conflict resolution algorithms can help with processing events that are delivered in an
+  unexpected order
+
+#### Batch and Stream Processing
+
+- Help ensure that data ends up in the right form in all right
+  places
+- Help maintain derived state
+- Can reprocess data for application evolution
+- Can combine batch and stream processing into the _lambda architecture_ which derives
+  read-optimized views from an event log
+  - Stream processor consumes events and produces an approximate update to the view
+  - Batch processor later consumes the same set of events and produces a corrected version of the
+    derived view
+
+### Unbundling Databases
+
+- Unix presents programmers with a logical but fairly low-level hardware abstraction
+- Databases give application programmers a high-level abstraction that hides complexities of data
+  structures on disk
+- How can we combine the best of both worlds?
+
+#### Composing Data Storage Technologies
+
+- Process of running `CREATE INDEX` involves scanning over a consistent snapshot, writing out the
+  index, and then processing backlog of writes that happened since the consistent snapshot was taken
+    - Similar to setting up a new follower replica and bootstrapping change data capture
+    - Essentially reprocesses the existing dataset to derive a index
+- Dataflow across an entire organization seems to look like one huge database
+  - Batch, stream, or ETL process transporting data parallels a database sub-system that keeps
+    indexes or materialized views up to date
+- Two approaches to compose storage and processing tools into a cohesive system
+  - Federated databases (unifying reads): Unified query interface to underlying storage engines and
+    processing methods
+    - Federated databases need to decompose query into subqueries for submission to relevant
+      consistuent systems
+    - No actual data integration in the constituent systems as a result of data federation
+  - Unbundled databased (unifying writes): The process of plugging together storage systems (E.G.
+    through change data capture and event logs)
+    - As though we are unbundling a database's index-maintenance features in order to synchronize
+      writes across different systems
+    - Traditional approach is to use distributed transactions
+    - Asynchronous event log with idempotent writes is much more robust and practical
+    - Enables loose coupling between various components
+- Complexity of running several different systems can be a problem
+- A single integrated software product might be able to achieve better and more predictable
+  performance
+- Goal of composing various data storage technologies is to achieve better performance for a wider
+  range of workloads and access patterns (breadth versus depth)
+
+#### Designing Applications Around Dataflow
+
+- When a dataset is derived from another, it goes through some kind of transformation function
+- Databases lack support for custom code to handle application-specific aspects (treating
+  application code as a derivation function)
+  - Usually deploy web application as stateless service and the database keeps state
+  - Cannot subscribe to changes in database and have to repeatedly poll
+- Order of state changes and fault tolerance are important properties for ensure that derive data
+  systems do not become inconsistent
+  - Modern stream processors can provide these ordering and reliability guarantees
+  - Allow application code to be run as stream operators rather than querying synchronous APIs
+    - one-direction asynchronous message streams versus synchronous request and response
+      interactions
+
+#### Observing Derived State
+
+- _Write path_: Dataflow for creating derived datasets and keeping them up to date
+- _Read path_: Read from derived dataset, perform processing, and construct response for user
+- Write path and read read is akin to eager and lazy evaluation in functional programming
+- Caches, indexes, and materialized views shift the boundary between the read path and the write
+  path to do more work on write path and save effort on read path
+- For mobile apps that work offline, on-device state can be perceived as cache of state on server
+- Recent protocols have moved past basic request and response pattern of HTTP towards server-sent
+  events (`EventSource` API) and WebSockets
+  - Essentially extending write path all the way to the end user
+- Can represent both reads and writes as events to be handled by the same stream operator
+  - Performing stream-table join between the stream of read queries and database
+  - Can track casual dependencies when read events are written to durable storage
+
+### Aiming for Correctness
+
+- Exactly once execution can be done with idempotent operations
+  - Can add metadata to make operations idempotent that weren't originally idempotent
+  - Have to consider the end-to-end flow of the request
+- Duplicate suppression
+  - Have to avoid duplicate requests in the case of network failures or timeouts
+  - Can use unique operation identifiers passed all the way from client to database to ensure that
+    an operation doesn't get performed twice
+- Just because an application uses a data system that provides strong safety properties does not
+  mean that the application is free from data loss or corruption
+  - Application needs to take end-to-end measures
+
+#### Enforcing Constraints
+
+- In a distributed setting, enforcing a uniqueness constraint requires consensus
+  - Multi-master replication is ruled out because different masters can concurrently accept
+    conflicting writes
+  - Logs for a stream processor can be partitioned based on the value that needs to be unique
+- Can use differently partitioned states to ensure correctness in multi-partitioned request
+  processing as well
+
+##### Loosely Interpreted Constraints
+
+- Acceptable to temporarily violate a constraint and fix it up later by apologizing
+  - Airlines and hotels overbooking as they expect guests to cancel
+  - Overdraft fees
+
+#### Timeliness and Integrity
+
+- Two different requirements to consistency
+  - Timeliness: Users observe the system in an up-to-date state
+  - Integrity: Absence of corruption
+- Eventual consistency is a violation of timeliness
+- Perpetual inconsistency is violation of integrity
+- The distinction between timeliness and integrity for ACID transactions is small
+- For event-based dataflow systems, timeliness and integrity is decoupled
+- Two important observations
+  1. Dataflow systems can maintain integrity without atomic commit, linearizability, or synchronous
+     corss-partition coordination
+  2. Many applications are fine with loose constraints that may be temporarily violated, so strict
+     uniqueness, which requires timeliness and coordination, can be avoided
+
+#### Test, but Verify
+
+- Cannot blindly trust what hardware and software promise
+- Checking for integrity of data is known as _auditing_
+- Event-based systems can provide better auditability
+- Continuous end-to-end integrity checks can give you increased confidence about the correctness of
+  your systems
+
+### Doing the Right Thing
+
+#### Predictive Analysis
+
+- Predictive analysis can discriminate against people who are deemed to be risky
+  - Cost of a missed business opportunity is much lower than the cost of a bad business opportunity
+  - Although systems can be designed to be unbiased, there might be systematic bias in the inputs to
+    an algorithm
+  - These extrapolate from the past, and if there is discrimination from the past, then they codify
+    the discrimination
+- Great prediction can lead to positive feedback loops
+  - If we are good at finding content that users agree with, we may only show opinions that they
+    already agree with
+
+#### Privacy and Tracking
+
+- Tracking behavioral data has become increasingly important for recommendations and A/B testing
+- Need to understand the distinction between data collection and surveillance
+
+#### Consent and Freedom of Choice
+
+- Users have little knowledge of what data goes into the databases
+- Data is extracted from users through one-way process
+- The only real alternative is not to use a service, which incurs a social cost to people choosing
+  not to use it
+- Freedom to choose which things to reveal to whom
