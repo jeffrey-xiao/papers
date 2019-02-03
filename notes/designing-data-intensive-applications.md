@@ -1304,3 +1304,195 @@ Linearizability
   algorithm is most suited for the task
 
 ## Stream Processing
+
+- Data could be unbounded and arrive gradually over time
+- Batch processors have to artificially divide the data into chunks of fixed duration
+  - Changes are reflected later which might be too slow
+- _Stream processing_ abandons the fixed time slices and processes every event as it happens
+
+### Transmitting Event Streams
+
+- An event is generated once by _producer_ and processed by multiple _consumers_
+- Related events are grouped together into a _topic_ or _stream_
+- It is better for consumers to be notified when new events appear instead of polling
+- Common way of notification is using a _messaging system_
+
+#### Messaging Systems
+
+- Direct communication channels like Unix pipe or TCP connection are examples of messaging systems
+- Messaging system should allow multiple producers to send messages to a topic an multiple consumers
+  to listen to a topic
+- Two general questions for messaging systems
+  1. What happens if producers send messages faster than consumers can process them?
+  - Drop messages
+  - Buffer messages in a queue
+  - Apply _backpresusure_
+  2. What happens if nodes crash or temporarily go offline?
+- Direct messaging systems
+  - UDP multicast is used for financial industry where low latency is important
+  - Brokerless messaging libraries like ZeroMQ and nanomsg implement pub/sub over TCP or IP
+    multicast
+  - StatsD and Brubeck use unreliable UDP messaging for collecting metrics from all machines on the
+    network and monitoring them
+  - If consumer exposes a service on a network, producers can make a direct HTTP or RPC request
+    (idea behind webhooks)
+
+#### Message brokers
+
+- Data is centralized in the broker
+- Ensure durability is the onus of the broker
+- Differences between brokers and databases
+  - Brokers delete messages when it has been successfully delivered to its consumers
+  - Brokers assume working set is small
+  - Users can select the portion of the data it wants by subscribing to topics in a message broker
+    and directly searching for data in a database
+  - Queries from a database are based on a point-in-time while message brokers do not support
+    arbitrary queries
+- Multiple consumers
+  - _Load balancing_: Each message is delivered to one of the consumers
+  - _Fan-out_: Each message to delivered to all of the consumers
+
+##### AMQP/JMS-Style Message Broker
+
+- Consumers have to acknowledge message so broker can remove it from the queue
+- If connection to client is closed or times out, broker assumes that the message was not processed
+
+##### Log-Based Message Broker
+
+- Messaging brokers can be implemented using logs that can be partitioned
+- Within each partition, broker assigned a monotonically increasing sequence number (_offset_) to
+  every message
+- Can implement load balancing by assigning each node to one partition of a topic
+  - Number of nodes sharing the work can be at most the number of log partitions
+  - If a single message is slow to process, it slows down all subsequent messages
+- Broker only needs to keep track of offset for each consumer (similar to _log sequence number_ in
+  single-leader database applications)
+  - Does need to keep a separate queue for every consumer
+
+## Databases and Streams
+
+- Replication log is a stream of database write events
+- Keeping heterogeneous systems in sync
+  - _Dual writes_: Application code explicitly writes to each of the systems when data changes
+    - Systems could be inconsistent with each other if one write fails or two requests get
+      interweaved
+  - _Change data capture_: Process of observing all data changes written to a database
+    - Makes one database the leader and turns the others into followers
+    - Database triggers can be used to implement change data capture
+    - Can also parse replication log or write-ahead log
+    - Can reconstruct the entire state of the database by replaying the log
+    - Can save space by compacting the log like we do in LSM trees
+  - _Event sourcing_: Process where events are written to an append-only event log
+    - Need to take the log of events and transform it into application state
+    - Need to store snapshots of current state so applications don't have to repeated reprocess the
+      full log
+    - A consumer of the event stream is not allowed to reject an event
+- _Command query responsibility segregation_: Separation of the form in which data is written from
+  the form data is read
+  - Can translate data from a write-optimized event log to a read-optimized application state
+- Since consumers of log are usually asynchronous, user may make a write to a log, then read from a
+  stale log-derived view
+  - Can perform the updates to the read view synchronously by using a transaction to combine the
+    writes into an atomic unit
+
+## Processing Streams
+
+Uses of streams
+
+1. Take data in the events and write it to a database, cache, search index, or similar storage
+   system
+2. Push the events to users (E.G. sending email or push notification, or streaming events to a
+   real-time dashboard)
+3. Process one or input streams to produce one or more output streams
+
+### Uses of Stream Processing
+
+- Monitoring purposes
+  - Fraud detection systems need to determine if usage patterns of a credit card have unexpectedly
+    changed, and block the card if it is likely to have been stolen
+  - Trading systems need to examine price changes in financial markets and execute trades according
+    to specified rules
+  - Manufacturing systems need to monitor status of machines in a factory and identify problems if
+    there are malfunctions
+  - Military and intelligence systems need to track the activities of aggressors and raise alarm if
+    there are signs of an attack
+- _Complex event processing_ (CEP): Use high-level declarative language like SQL to describe
+  patterns of events that should be detected
+  - Searches for events that match queries
+- Obtaining aggregations and statistical metrics over a large number of events
+  - Measuring the rate of a specified event
+  - Calculating the rolling average of a value
+  - Comparing current statistics to previous time intervals
+- Maintaining materialized views
+
+### Reasoning About Time
+
+- Batch processes use event timestamps for time windows
+- Stream processing frameworks use local system clock on the processing machine
+- There could be difference between event time and processing time due to queueing, network
+  failures, or performance issues
+- Events could be buffered and arrive extremely late (E.G. mobile app that reports events is used
+  while the device is offline and the events get sent when an internet connection is next available)
+  - Can log three timestamps to solve this problem (assuming network delay is negligible compared
+    to required timestamp accuracy and device clock offset did not change between time the event
+    occurred and the time it was sent to the server)
+    1. The time at which the event occurred, according to device clock
+    2. The time at which the event was sent to the server, according to the device clock
+    3. The time at which the event was received by the server, according to the server clock
+- Types of windows
+  1. Tumbling window: Has a fixed length and every event belongs to exactly one window
+  2. Hopping window: Has a fixed length, but windows can overlap in order to provide some smoothing
+  - Can implement hopping window by first calculating tumbling windows of the hop size and
+    aggregate over the window size
+  3. Sliding window: Contains all events that occur within some interval of each other
+  4. Session window: Has no fixed duration and it is defined by grouping together all events for the
+     same user that occur closely together in time
+
+### Stream Joins
+
+#### Stream-Stream Join
+
+- Stream processor needs to maintain state
+- Example: Calculating click-through rate using search query events and query click events
+  - Due to network delay, the query click event can arrive before the search query event
+  - When search event or click even occurs, add to appropriate index and stream processor will check
+    the other index to see if there is a corresponding event
+
+#### Stream-Table Join
+
+- Can enrich event with information from a database
+- Can query a remote database or load a copy of the database into the stream processor
+  - Local database needs to keep up to date (use change data capture)
+
+#### Table-Table Join
+
+- Maintain a materialized view for a query that joins two tables
+- Should update when underlying events update
+
+### Fault Tolerance
+
+Microbatching
+
+- Break streams into small blocks and treat each block like a miniature batch process
+  - Spark Streaming uses tumbling window
+  - Flink periodically generates rolling checkpoints of state and write them to durable storage
+
+Atomic Commit
+
+- All outputs and side effects of processing an event take effect if and only if the processing is
+  successful
+- Have to make distributed transactions to ensure exactly-once processing in the presence of faults
+
+Idempotence
+
+- Can also rely idempotence to ensure processing events can be retried
+- Can use monotonically increasing offset that is attached with each message to determine if an
+  update has already been applied and avoid performing the same update again for an external
+  system
+
+Rebuilding State After a Failure
+
+- Keep state in remote datastore and replicate it
+- Keep state local to stream processor and replicate it periodically
+
+## Future of Data Systems
