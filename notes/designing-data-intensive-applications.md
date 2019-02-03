@@ -5,6 +5,8 @@ title: Notes for Designing Data Intensive Applications
 
 # Foundation of Database Systems
 
+## Reliable, Scalable, and Maintainable Applications
+
 1. Reliability
 
 - Hardware Faults
@@ -1369,7 +1371,7 @@ Linearizability
   single-leader database applications)
   - Does need to keep a separate queue for every consumer
 
-## Databases and Streams
+### Databases and Streams
 
 - Replication log is a stream of database write events
 - Keeping heterogeneous systems in sync
@@ -1395,7 +1397,7 @@ Linearizability
   - Can perform the updates to the read view synchronously by using a transaction to combine the
     writes into an atomic unit
 
-## Processing Streams
+### Processing Streams
 
 Uses of streams
 
@@ -1405,7 +1407,7 @@ Uses of streams
    real-time dashboard)
 3. Process one or input streams to produce one or more output streams
 
-### Uses of Stream Processing
+#### Purpose of Processing Streams
 
 - Monitoring purposes
   - Fraud detection systems need to determine if usage patterns of a credit card have unexpectedly
@@ -1425,7 +1427,7 @@ Uses of streams
   - Comparing current statistics to previous time intervals
 - Maintaining materialized views
 
-### Reasoning About Time
+#### Reasoning About Time
 
 - Batch processes use event timestamps for time windows
 - Stream processing frameworks use local system clock on the processing machine
@@ -1448,9 +1450,9 @@ Uses of streams
   4. Session window: Has no fixed duration and it is defined by grouping together all events for the
      same user that occur closely together in time
 
-### Stream Joins
+#### Stream Joins
 
-#### Stream-Stream Join
+##### Stream-Stream Join
 
 - Stream processor needs to maintain state
 - Example: Calculating click-through rate using search query events and query click events
@@ -1458,18 +1460,18 @@ Uses of streams
   - When search event or click even occurs, add to appropriate index and stream processor will check
     the other index to see if there is a corresponding event
 
-#### Stream-Table Join
+##### Stream-Table Join
 
 - Can enrich event with information from a database
 - Can query a remote database or load a copy of the database into the stream processor
   - Local database needs to keep up to date (use change data capture)
 
-#### Table-Table Join
+##### Table-Table Join
 
 - Maintain a materialized view for a query that joins two tables
 - Should update when underlying events update
 
-### Fault Tolerance
+#### Fault Tolerance
 
 Microbatching
 
