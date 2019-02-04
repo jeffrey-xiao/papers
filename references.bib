@@ -41,16 +41,14 @@
   keywords = {state machines, three-phase commit, voting},
 }
 
-@article{paxos-made-simple,
-  author = {Lamport, Leslie},
-  title = {Paxos Made Simple},
-  year = {2001},
-  month = {December},
-  abstract = {At the PODC 2001 conference, I got tired of everyone saying how difficult it was to understand the Paxos algorithm, published in [122]. Although people got so hung up in the pseudo-Greek names that they found the paper hard to understand, the algorithm itself is very simple. So, I cornered a couple of people at the conference and explained the algorithm to them orally, with no paper. When I got home, I wrote down the explanation as a short note, which I later revised based on comments from Fred Schneider and Butler Lampson. The current version is 13 pages long, and contains no formula more complicated than n1 &gt; n2.},
-  url = {https://www.microsoft.com/en-us/research/publication/paxos-made-simple/},
-  pages = {51-58},
-  journal = {ACM SIGACT News (Distributed Computing Column) 32, 4 (Whole Number 121, December 2001)},
-  edition = {ACM SIGACT News (Distributed Computing Column) 32, 4 (Whole Number 121, December 2001)},
+@article{lamport2001paxos,
+  title={Paxos made simple},
+  author={Lamport, Leslie and others},
+  journal={ACM Sigact News},
+  volume={32},
+  number={4},
+  pages={18--25},
+  year={2001}
 }
 
 @inproceedings{Chandra:2007:PML:1281100.1281103,
@@ -83,6 +81,14 @@
   timestamp = {Mon, 13 Aug 2018 16:47:25 +0200},
   biburl = {https://dblp.org/rec/bib/journals/corr/HowardMS16},
   bibsource = {dblp computer science bibliography, https://dblp.org},
+}
+
+@inproceedings{ongaro2014search,
+  title={In search of an understandable consensus algorithm.},
+  author={Ongaro, Diego and Ousterhout, John K},
+  booktitle={USENIX Annual Technical Conference},
+  pages={305--319},
+  year={2014}
 }
 
 @article{Howard:2015:RRW:2723872.2723876,
@@ -155,7 +161,7 @@
 @inproceedings{alquraan2018analysis,
   title={An analysis of network-partitioning failures in cloud systems},
   author={Alquraan, Ahmed and Takruri, Hatem and Alfatafta, Mohammed and Al-Kiswany, Samer},
-  booktitle={13th $\{$USENIX$\}$ Symposium on Operating Systems Design and Implementation ($\{$OSDI$\}$ 18)},
+  booktitle={13th USENIX Symposium on Operating Systems Design and Implementation OSDI 18)},
   pages={51--68},
   year={2018}
 }

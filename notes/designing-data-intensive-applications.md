@@ -1549,8 +1549,8 @@ Rebuilding State After a Failure
 
 - Process of running `CREATE INDEX` involves scanning over a consistent snapshot, writing out the
   index, and then processing backlog of writes that happened since the consistent snapshot was taken
-    - Similar to setting up a new follower replica and bootstrapping change data capture
-    - Essentially reprocesses the existing dataset to derive a index
+  - Similar to setting up a new follower replica and bootstrapping change data capture
+  - Essentially reprocesses the existing dataset to derive a index
 - Dataflow across an entire organization seems to look like one huge database
   - Batch, stream, or ETL process transporting data parallels a database sub-system that keeps
     indexes or materialized views up to date
