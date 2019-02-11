@@ -49,6 +49,11 @@ better understand the material.
 
 ## Textbooks
 
+- Operating Systems: Principles and Practice
+  - [Volume 1: Kernels and Processes](textbooks/operating-systems-principles-and-practice-vol-1-kernels-and-processes.pdf)
+  - [Volume 2: Concurrency](textbooks/operating-systems-principles-and-practice-vol-2-concurrency.pdf)
+  - [Volume 3: Memory Management](textbooks/operating-systems-principles-and-practice-vol-3-memory-management.pdf)
+  - [Volume 4: Persistent Storage](textbooks/operating-systems-principles-and-practice-vol-4-persistent-storage.pdf)
 - [Designing Data-Intensive Applications](textbooks/designing-data-intensive-applications.pdf)
 - [Distributed Systems](textbooks/distributed-systems.pdf)
 - [Readings in Database Systems](textbooks/readings-in-database-systems.pdf)
