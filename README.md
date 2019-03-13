@@ -6,6 +6,11 @@ content has a focus on distributed systems.
 I have also included my notes on select resources to summarize important takeaways and to help me
 better understand the material.
 
+## Algorithms
+
+- [Time, Clocks, and the Ordering of Events in a Distributed System](algorithms/time-clocks-and-the-ordering-of-events-in-a-distributed-system.pdf)
+  > Lamport, Leslie. 1978. “Time, Clocks, and the Ordering of Events in a Distributed System.” *Commun. ACM* 21 (7). New York, NY, USA: ACM: 558–65. <https://doi.org/10.1145/359545.359563>.
+
 ## Blog Posts and Online Articles
 
 - [Strong Consistency Models](https://aphyr.com/posts/313-strong-consistency-models)
@@ -29,6 +34,11 @@ better understand the material.
   > Ongaro, Diego, and John K Ousterhout. 2014. “In Search of an Understandable Consensus Algorithm.” In _USENIX Annual Technical Conference_, 305–19.
 - [Raft Refloated: Do We Have Consensus?](consensus/raft-refloated-do-we-have-consensus.pdf)
   > Howard, Heidi, Malte Schwarzkopf, Anil Madhavapeddy, and Jon Crowcroft. 2015. “Raft Refloated: Do We Have Consensus?” _SIGOPS Oper. Syst. Rev._ 49 (1). New York, NY, USA: ACM: 12–21. <https://doi.org/10.1145/2723872.2723876>.
+
+## Data Structures
+
+- [A Comprehensive Study of Convergent and Commutative Replicated Data Types](data-structures/a-comprehensive-study-of-convergent-and-commutative-replicated-data-types.pdf)
+  > Shapiro, Marc, Nuno Preguiça, Carlos Baquero, and Marek Zawirski. 2011. "Conflict-Free Replicated Data Types." In _Stabilization, Safety, and Security of Distributed Systems_, edited by Xavier Défago, Franck Petit, and Vincent Villain, 386–400. Berlin, Heidelberg: Springer Berlin Heidelberg.
 
 ## Databases
 
