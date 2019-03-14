@@ -39,6 +39,8 @@ better understand the material.
 
 - [A Comprehensive Study of Convergent and Commutative Replicated Data Types](data-structures/a-comprehensive-study-of-convergent-and-commutative-replicated-data-types.pdf)
   > Shapiro, Marc, Nuno Preguiça, Carlos Baquero, and Marek Zawirski. 2011. "Conflict-Free Replicated Data Types." In _Stabilization, Safety, and Security of Distributed Systems_, edited by Xavier Défago, Franck Petit, and Vincent Villain, 386–400. Berlin, Heidelberg: Springer Berlin Heidelberg.
+- [Efficient Synchronization of State-based CRDTs](data-structures/efficient-synchronization-of-state-based-crdts.pdf)
+  > Enes, Vitor, Paulo Sérgio Almeida, Carlos Baquero, and João Leitão. 2018. “Efficient Synchronization of State-Based Crdts.” *arXiv Preprint arXiv:1803.02750*.
 
 ## Databases
 
@@ -56,6 +58,8 @@ better understand the material.
 
 - [An Analysis of Network-Partitioning Failures in Cloud Systems](testing/an-analysis-of-network-partitioning-failures-in-cloud-systems.pdf)
   > Alquraan, Ahmed, Hatem Takruri, Mohammed Alfatafta, and Samer Al-Kiswany. 2018. “An Analysis of Network-Partitioning Failures in Cloud Systems.” In _13th Usenix Symposium on Operating Systems Design and Implementation Osdi 18)_, 51–68.
+- [Why Is Random Testing Effective for Partition Tolerance Bugs?](testing/why-is-random-testing-effective-for-partition-tolerance-bugs.pdf)
+  > Majumdar, Rupak, and Filip Niksic. 2017. “Why Is Random Testing Effective for Partition Tolerance Bugs?” *Proceedings of the ACM on Programming Languages* 2 (POPL). ACM: 46.
 
 ## Textbooks
 
