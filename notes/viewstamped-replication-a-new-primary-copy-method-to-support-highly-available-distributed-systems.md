@@ -91,7 +91,7 @@ title: Notes for ``Viewstamped Replication - A New Primary Copy Method to Suppor
 - Client's primary acts as coordinate of two-phase commit protocol
   - Determines who the participants are from the `pset`
   - Sends prepare messages to participants of `pset`
-  - Adds committing record to buffer if all participants agree to ensure that commit will  be known
+  - Adds committing record to buffer if all participants agree to ensure that commit will be known
     across view change of coordinator
   - Sends commit messages and when all are acknowledged, adds done record to buffer
   - If transaction aborts, then coordinator sends abort messages to participants and adds an aborted

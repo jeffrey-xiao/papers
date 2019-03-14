@@ -28,7 +28,7 @@ title: Notes for ``Paxos Made Simple''
      a) An acceptor can accept a proposal numbered $n$ if and only if it has not responded to a
      _prepare_ request having a number greater than $n$
   2. If a proposal with value $v$ is chosen, then every higher-numbered proposal that is chosen has
-  value $v$
+     value $v$
      a) If a proposal with value $v$ is chosen, then every higher-numbered proposal accepted by any
      acceptor has value $v$
      b) If a proposal with value $v$ is chosen, then every higher-numbered proposal issued by any
