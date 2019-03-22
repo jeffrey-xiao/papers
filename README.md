@@ -46,6 +46,8 @@ better understand the material.
 
 - [Dynamo: Amazon's Highly Available Key-value Store](databases/dynamo-amazons-highly-available-key-value-store.pdf)
   > DeCandia, Giuseppe, Deniz Hastorun, Madan Jampani, Gunavardhan Kakulapati, Avinash Lakshman, Alex Pilchin, Swaminathan Sivasubramanian, Peter Vosshall, and Werner Vogels. 2007. “Dynamo: Amazon’s Highly Available Key-Value Store.” In *ACM Sigops Operating Systems Review*, 41:205–20. 6. ACM.
+- [Bigtable: A Distributed Storage System for Structured Data](databases/bigtable-a-distributed-storage-system-for-structured-data.pdf)
+  > Chang, Fay, Jeffrey Dean, Sanjay Ghemawat, Wilson C Hsieh, Deborah A Wallach, Mike Burrows, Tushar Chandra, Andrew Fikes, and Robert E Gruber. 2008. “Bigtable: A Distributed Storage System for Structured Data.” *ACM Transactions on Computer Systems (TOCS)* 26 (2). ACM: 4.
 
 ## P2P
 
