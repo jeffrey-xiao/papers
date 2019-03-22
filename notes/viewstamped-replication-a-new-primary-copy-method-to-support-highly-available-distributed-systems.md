@@ -148,7 +148,7 @@ title: Notes for ``Viewstamped Replication - A New Primary Copy Method to Suppor
 - Must ensure that state of new view includes what that cohort knows
 - Can take state of cohort with highest viewstamp for the previous view
 - Event records are sent to backups in timestamp order
-- Cohorts send periodic keep-alive messages to other cohorts in the configuration
+- Cohorts send periodic heartbeats to other cohorts in the configuration
 - Cohort initiates view change if it notices that it is not communicating with some other cohort or
   if it notices that it is communicating with a cohort that it could not communicate with previously
 - Cohorts generate unique new `viewid` using their `mid` and a number greater than `max_viewid` and
