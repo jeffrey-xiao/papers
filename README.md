@@ -19,45 +19,45 @@ better understand the material.
 ## Consensus
 
 - [Viewstamped Replication: A New Primary Copy Method to Support Highly-Available Distributed Systems](consensus/viewstamped-replication-a-new-primary-copy-method-to-support-highly-available-distributed-systems.pdf)
-  > Oki, Brian M., and Barbara H. Liskov. 1988. “Viewstamped Replication: A New Primary Copy Method to Support Highly-Available Distributed Systems.” In _Proceedings of the Seventh Annual Acm Symposium on Principles of Distributed Computing_, 8–17. PODC ’88. New York, NY, USA: ACM. <https://doi.org/10.1145/62546.62549>.
+  > Oki, Brian M, and Barbara H Liskov. 1988. “Viewstamped Replication: A New Primary Copy Method to Support Highly-Available Distributed Systems.” In *Proceedings of the Seventh Annual Acm Symposium on Principles of Distributed Computing*, 8–17. ACM.
 - [Viewstamped Replication Revisited](consensus/viewstamped-replication-revisited.pdf)
   > Liskov, Barbara, and James Cowling. 2012. “Viewstamped Replication Revisited.”
 - [The Part Time Parliament](consensus/the-part-time-parliament.pdf)
-  > Lamport, Leslie. 1998. “The Part-Time Parliament.” _ACM Trans. Comput. Syst._ 16 (2). New York, NY, USA: ACM: 133–69. <https://doi.org/10.1145/279227.279229>.
+  > Lamport, Leslie, and others. 1998. “The Part-Time Parliament.” *ACM Transactions on Computer Systems* 16 (2): 133–69.
 - [Paxos Made Simple](consensus/paxos-made-simple.pdf)
-  > Lamport, Leslie, and others. 2001. “Paxos Made Simple.” _ACM Sigact News_ 32 (4): 18–25.
+  > Lamport, Leslie, and others. 2001. “Paxos Made Simple.” *ACM Sigact News* 32 (4): 18–25.
 - [Paxos Made Live - An Engineering Perspective](consensus/paxos-made-live-an-engineering-perspective.pdf)
-  > Chandra, Tushar D., Robert Griesemer, and Joshua Redstone. 2007. “Paxos Made Live: An Engineering Perspective.” In _Proceedings of the Twenty-Sixth Annual Acm Symposium on Principles of Distributed Computing_, 398–407. PODC ’07. New York, NY, USA: ACM. <https://doi.org/10.1145/1281100.1281103>.
+  > Chandra, Tushar D, Robert Griesemer, and Joshua Redstone. 2007. “Paxos Made Live: An Engineering Perspective.” In *Proceedings of the Twenty-Sixth Annual Acm Symposium on Principles of Distributed Computing*, 398–407. ACM.
 - [Flexible Paxos: Quorum Intersection Revisited](consensus/flexible-paxos-quorum-intersection-revisited.pdf)
-  > Howard, Heidi, Dahlia Malkhi, and Alexander Spiegelman. 2016a. “Flexible Paxos: Quorum Intersection Revisited.” _arXiv Preprint arXiv:1608.06696_.
+  > Howard, Heidi, Dahlia Malkhi, and Alexander Spiegelman. 2016. “Flexible Paxos: Quorum Intersection Revisited.” *arXiv Preprint arXiv:1608.06696*.
 - [In Search of an Understandable Consensus Algorithm](consensus/in-search-of-an-understandable-consensus-algorithm.pdf)
-  > Ongaro, Diego, and John K Ousterhout. 2014. “In Search of an Understandable Consensus Algorithm.” In _USENIX Annual Technical Conference_, 305–19.
+  > Ongaro, Diego, and John Ousterhout. 2014. “In Search of an Understandable Consensus Algorithm.” In *2014 {Usenix} Annual Technical Conference ({Usenix}{ATC} 14)*, 305–19.
 - [Raft Refloated: Do We Have Consensus?](consensus/raft-refloated-do-we-have-consensus.pdf)
-  > Howard, Heidi, Malte Schwarzkopf, Anil Madhavapeddy, and Jon Crowcroft. 2015. “Raft Refloated: Do We Have Consensus?” _SIGOPS Oper. Syst. Rev._ 49 (1). New York, NY, USA: ACM: 12–21. <https://doi.org/10.1145/2723872.2723876>.
+  > Howard, Heidi, Malte Schwarzkopf, Anil Madhavapeddy, and Jon Crowcroft. 2015. “Raft Refloated: Do We Have Consensus?” *Operating Systems Review* 49 (1): 12–21.
 
 ## Data Structures
 
 - [A Comprehensive Study of Convergent and Commutative Replicated Data Types](data-structures/a-comprehensive-study-of-convergent-and-commutative-replicated-data-types.pdf)
-  > Shapiro, Marc, Nuno Preguiça, Carlos Baquero, and Marek Zawirski. 2011. "Conflict-Free Replicated Data Types." In _Stabilization, Safety, and Security of Distributed Systems_, edited by Xavier Défago, Franck Petit, and Vincent Villain, 386–400. Berlin, Heidelberg: Springer Berlin Heidelberg.
+  > Shapiro, Marc, Nuno Preguiça, Carlos Baquero, and Marek Zawirski. 2011. “A Comprehensive Study of Convergent and Commutative Replicated Data Types.” PhD thesis, Inria–Centre Paris-Rocquencourt; INRIA.
 - [Efficient Synchronization of State-based CRDTs](data-structures/efficient-synchronization-of-state-based-crdts.pdf)
   > Enes, Vitor, Paulo Sérgio Almeida, Carlos Baquero, and João Leitão. 2018. “Efficient Synchronization of State-Based Crdts.” *arXiv Preprint arXiv:1803.02750*.
 
 ## Databases
 
 - [Dynamo: Amazon's Highly Available Key-value Store](databases/dynamo-amazons-highly-available-key-value-store.pdf)
-  > DeCandia, Giuseppe, Deniz Hastorun, Madan Jampani, Gunavardhan Kakulapati, Avinash Lakshman, Alex Pilchin, Swaminathan Sivasubramanian, Peter Vosshall, and Werner Vogels. 2007. “Dynamo: Amazon’s Highly Available Key-Value Store.” In _Proceedings of Twenty-First Acm Sigops Symposium on Operating Systems Principles_, 205–20. SOSP ’07. New York, NY, USA: ACM. <https://doi.org/10.1145/1294261.1294281>.
+  > DeCandia, Giuseppe, Deniz Hastorun, Madan Jampani, Gunavardhan Kakulapati, Avinash Lakshman, Alex Pilchin, Swaminathan Sivasubramanian, Peter Vosshall, and Werner Vogels. 2007. “Dynamo: Amazon’s Highly Available Key-Value Store.” In *ACM Sigops Operating Systems Review*, 41:205–20. 6. ACM.
 
 ## P2P
 
 - [Chord: A Scalable Peer-to-peer Lookup Service for Internet Applications](p2p/chord-a-scalable-peer-to-peer-lookup-service-for-internet-applications.pdf)
-  > Stoica, Ion, Robert Morris, David Karger, M. Frans Kaashoek, and Hari Balakrishnan. 2001. “Chord: A Scalable Peer-to-Peer Lookup Service for Internet Applications.” In _Proceedings of the 2001 Conference on Applications, Technologies, Architectures, and Protocols for Computer Communications_, 149–60. SIGCOMM ’01. New York, NY, USA: ACM. <https://doi.org/10.1145/383059.383071>.
+  > Stoica, Ion, Robert Morris, David Liben-Nowell, David R Karger, M Frans Kaashoek, Frank Dabek, and Hari Balakrishnan. 2003. “Chord: A Scalable Peer-to-Peer Lookup Protocol for Internet Applications.” *IEEE/ACM Transactions on Networking (TON)* 11 (1). IEEE Press: 17–32.
 - [Kademlia: A Peer-to-peer Information System Based on the XOR Metric](p2p/kademlia-a-peer-to-peer-information-system-based-on-the-xor-metric.pdf)
-  > Maymounkov, Petar, and David Mazières. 2002. “Kademlia: A Peer-to-Peer Information System Based on the Xor Metric.” In _Peer-to-Peer Systems_, edited by Peter Druschel, Frans Kaashoek, and Antony Rowstron, 53–65. Berlin, Heidelberg: Springer Berlin Heidelberg.
+  > Maymounkov, Petar, and David Mazieres. 2002. “Kademlia: A Peer-to-Peer Information System Based on the Xor Metric.” In *International Workshop on Peer-to-Peer Systems*, 53–65. Springer.
 
 ## Testing
 
 - [An Analysis of Network-Partitioning Failures in Cloud Systems](testing/an-analysis-of-network-partitioning-failures-in-cloud-systems.pdf)
-  > Alquraan, Ahmed, Hatem Takruri, Mohammed Alfatafta, and Samer Al-Kiswany. 2018. “An Analysis of Network-Partitioning Failures in Cloud Systems.” In _13th Usenix Symposium on Operating Systems Design and Implementation Osdi 18)_, 51–68.
+  > Alquraan, Ahmed, Hatem Takruri, Mohammed Alfatafta, and Samer Al-Kiswany. 2018. “An Analysis of Network-Partitioning Failures in Cloud Systems.” In *13th Usenix Symposium on Operating Systems Design and Implementation Osdi 18)*, 51–68.
 - [Why Is Random Testing Effective for Partition Tolerance Bugs?](testing/why-is-random-testing-effective-for-partition-tolerance-bugs.pdf)
   > Majumdar, Rupak, and Filip Niksic. 2017. “Why Is Random Testing Effective for Partition Tolerance Bugs?” *Proceedings of the ACM on Programming Languages* 2 (POPL). ACM: 46.
 
