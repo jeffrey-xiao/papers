@@ -1,6 +1,6 @@
 ---
 geometry: margin=3cm
-title: Notes for ``Paxos Made Simple''
+title: "Notes for ``Paxos Made Simple''"
 ---
 
 # The Consensus Algorithm

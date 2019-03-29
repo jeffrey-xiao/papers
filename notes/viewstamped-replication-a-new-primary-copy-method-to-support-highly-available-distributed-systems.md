@@ -1,6 +1,6 @@
 ---
 geometry: margin=3cm
-title: Notes for ``Viewstamped Replication - A New Primary Copy Method to Support Highly-Available Distributed Systems''
+title: "Notes for ``Viewstamped Replication:  A New Primary Copy Method to Support Highly-Available Distributed Systems''"
 ---
 
 # Introduction

@@ -1,6 +1,6 @@
 ---
 geometry: margin=3cm
-title: Notes for ``Viewstamped Replication Revisited''
+title: "Notes for ``Viewstamped Replication Revisited''"
 ---
 
 # Background
@@ -56,7 +56,7 @@ title: Notes for ``Viewstamped Replication Revisited''
 - Every message sent from one replica to another contains sender's current _view-number_
 - Replicas only process normal protocol messages with the same _view-number_ that they know
 - If sender is behind, receiver drops the message
-- If sender is ahead, receiver performs _state-transfer and requests information it is missing
+- If sender is ahead, receiver performs \_state-transfer and requests information it is missing
   from the other replicas and uses information to bring itself up-to-date
 - If client does not receive a timely response, it re-sends the request to all replicas in the case
   of a view-change
@@ -89,8 +89,8 @@ title: Notes for ``Viewstamped Replication Revisited''
    also increments its _op-number_, adds request to the end of its _log_, updates the client's
    information in the _client-table_, and sends a $\langle \text{PREPARE\_OK}, v, n, i \rangle$ to
    primary.
-6. Primary waits for $f$ PREPARE_OK messages at which point it considers the request to be committed.
-   It executes the request by making an upcall, increments it _commit-number_, updates the
+6. Primary waits for $f$ PREPARE*OK messages at which point it considers the request to be committed.
+   It executes the request by making an upcall, increments it \_commit-number*, updates the
    _client-table_ with the result, and sends a $\langle \text{REPLY}, v, s, x \rangle$ to the client
    where $v$ is the _view-number_, $s$ is the number the client provided in the reuqest, and $x$ is
    the result of the upcall. 6.
@@ -119,15 +119,15 @@ title: Notes for ``Viewstamped Replication Revisited''
 1. Replica $i$ notices the need for a view change, advances its _view-number_, sets it status to
    _view-change_, and sends a $\langle \text{START\_VIEW\_CHANGE}, v, i \rangle$ message to all
    other replicas, where $v$ is the new _view-number_. It notices the need based on its own timer,
-   receiving a START_VIEW_CHANGE message or receiving a DO_VIEW_CHANGE message for a view with a
-   larger number than its own _view-number_.
-2. When replica $i$ receives START_VIEW_CHANGE message for its _view-number_ from $f$ other
+   receiving a START*VIEW_CHANGE message or receiving a DO_VIEW_CHANGE message for a view with a
+   larger number than its own \_view-number*.
+2. When replica $i$ receives START*VIEW_CHANGE message for its \_view-number* from $f$ other
    replicas, it sends a $\langle \text{DO\_VIEW\_CHANGE}, v, l, v', n, k, i \rangle$ message to the
    node that will be the primary in the new view where $v$ is its _view-number_, $l$ is its log,
    $v'$ is the view number of the latest view in which its status was _normal_, $n$ is the
    _op-number_, and $k$ is the _commit-number_.
-3. When new primary receives $f + 1$ DO_VIEW_CHANGE messages from different replicas (including
-   itself), it sets its _view_number_ to that in the messages and selects the log in the message
+3. When new primary receives $f + 1$ DO*VIEW_CHANGE messages from different replicas (including
+   itself), it sets its \_view_number* to that in the messages and selects the log in the message
    with the highest $v'$, breaking ties by the highest $n$. It sets the _op-number_ to latest entry
    in new log, sets its _commit-number_ to the largest number it received, changes its _status_ to
    normal, and informs the other replicas of the completion of the view change by sending $\langle
@@ -135,7 +135,7 @@ title: Notes for ``Viewstamped Replication Revisited''
    is the _commit-number_.
 4. New primary can start accepting client requests. It also executes any committed operations that
    hasn't been executed, updates its client-table, and sends the replies to the clients.
-5. When other replicas receive the START_VIEW change, they replace their _log_, set their
+5. When other replicas receive the START*VIEW change, they replace their \_log*, set their
    _op-number_ to the latest entry in the new log, set their _view-number_ to the view number in the
    message, change their _status_ to _normal_ and update the information in their _client-table_. If
    there are non-committed operations in the log, they send a $\langle PREPARE\_OK, v, n, i \rangle$
@@ -149,8 +149,8 @@ title: Notes for ``Viewstamped Replication Revisited''
   reinitialized its state by reading from disk
 - Can eliminate disk write by using a _recovery protocol_
 - When a node comes back, it sets its _state_ to _recovering_ and must learn the configuration
-again but waiting for messages from other group members and then fetching the configuration from one
-of them
+  again but waiting for messages from other group members and then fetching the configuration from one
+  of them
 - Configuration information can also be stored on disk
 - Nonce is used to determine messages for the current recovery and not for a previous one
 
@@ -163,9 +163,9 @@ of them
    where $v$ is its _view-number_, $x$ is the nonce in the RECOVERY message. If $j$ is the primary
    of the view, then $l$ is its _log_, $n$ is its _op-number_, and $k$ is the _commit-number_,
    otherwises these values are _nil_.
-3. Recovering replica waits for at least $f + 1$ RECOVERY_RESPONSE messages, including one from the
+3. Recovering replica waits for at least $f + 1$ RECOVERY*RESPONSE messages, including one from the
    primary of the latest view it learns of in these messages. Then it updates state using
-   information from the primary and changes its status to _normal_.
+   information from the primary and changes its status to \_normal*.
 
 ## Client Recovery
 
@@ -202,10 +202,10 @@ of them
   its _op-number_ to its _commit-number_ since requests might be reordered in the view change
 - A replica sends a $\langle \text{GET\_STATE}, v, n', i \rangle$ message to one of the other
   replicas, where $v$ is its _view-number_ and $n'$ is its _op-number_.
-- A replica will only respond to a GET_STATE message if its _status_ is _normal_ and it is in view
+- A replica will only respond to a GET*STATE message if its \_status* is _normal_ and it is in view
   $v$
-- Response to GET_STATE message would be $\langle \text{NEW\_STATE}, v, l, n, k \rangle$ where $v$ is
-  its _view-number_, $l$ is its log after $n'$, $n$ is its _op-number_, and $k$ is its
+- Response to GET*STATE message would be $\langle \text{NEW\_STATE}, v, l, n, k \rangle$ where $v$ is
+  its \_view-number*, $l$ is its log after $n'$, $n$ is its _op-number_, and $k$ is its
   _commit-number_
 
 ## View Changes
@@ -287,8 +287,8 @@ of them
 
 ### Processing in the New Group
 
-1. When replica learns of the new epoch (E.G. by receiving a START_EPOCH or COMMIT message), it
-   initializes its state to record old and new configurations, the new _epoch-number_, and
+1. When replica learns of the new epoch (E.G. by receiving a START*EPOCH or COMMIT message), it
+   initializes its state to record old and new configurations, the new \_epoch-number*, and
    _op-number_, sets its _view-number_ to 0, and sets its _status_ to _transitioning_
 2. If replica is missing requests from its log, it brings its state up-to-date by sending state
    transfer to the old replicas and also to other new replicas
@@ -318,7 +318,7 @@ of them
 
 - Administrator must wait for reconfiguration to be complete before shutting down nodes being
   replaced
-EW- Administrator can run $\langle \text{CHECK\_EPOCH}, e, c, s \rangle$ after getting the reply to the
+  EW- Administrator can run $\langle \text{CHECK\_EPOCH}, e, c, s \rangle$ after getting the reply to the
   RECONFIGURATION request, and upon getting a reply, determine that the reconfiguration is complete
 
 ## Locating the Group

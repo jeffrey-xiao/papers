@@ -1,6 +1,6 @@
 ---
 geometry: margin=3cm
-title: Notes for Designing Data Intensive Applications
+title: "Notes for ``Designing Data Intensive Applications''"
 ---
 
 # Foundation of Database Systems

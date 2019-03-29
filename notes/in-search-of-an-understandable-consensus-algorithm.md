@@ -1,6 +1,6 @@
 ---
 geometry: margin=3cm
-title: Notes for ``In Search of an Understandable Consensus Algorithm''
+title: "Notes for ``In Search of an Understandable Consensus Algorithm''"
 ---
 
 # Abstract
