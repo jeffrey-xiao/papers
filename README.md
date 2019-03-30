@@ -30,6 +30,10 @@ better understand the material.
   > Chandra, Tushar D, Robert Griesemer, and Joshua Redstone. 2007. “Paxos Made Live: An Engineering Perspective.” In _Proceedings of the Twenty-Sixth Annual Acm Symposium on Principles of Distributed Computing_, 398–407. ACM.
 - [Flexible Paxos: Quorum Intersection Revisited](consensus/flexible-paxos-quorum-intersection-revisited.pdf)
   > Howard, Heidi, Dahlia Malkhi, and Alexander Spiegelman. 2016. “Flexible Paxos: Quorum Intersection Revisited.” _arXiv Preprint arXiv:1608.06696_.
+- [Zab: High-Performance Broadcast for Primary-Backup Systems](consensus/zab-high-performance-broadcast-for-primary-backup-systems.pdf)
+  > Junqueira, Flavio P, Benjamin C Reed, and Marco Serafini. 2011. “Zab: High-Performance Broadcast for Primary-Backup Systems.” In _2011 Ieee/Ifip 41st International Conference on Dependable Systems & Networks (Dsn)_, 245–56. IEEE.
+- [ZooKeeper's Atomic Broadcast Protocol: Theory and Practice](consensus/zookeepers-atomic-broadcast-protocol-theory-and-practice.pdf)
+  > Medeiros, André. 2012. “ZooKeeper’s Atomic Broadcast Protocol: Theory and Practice.” _Aalto University School of Science_ 20.
 - [In Search of an Understandable Consensus Algorithm](consensus/in-search-of-an-understandable-consensus-algorithm.pdf)
   > Ongaro, Diego, and John Ousterhout. 2014. “In Search of an Understandable Consensus Algorithm.” In _2014 {Usenix} Annual Technical Conference ({Usenix}{ATC} 14)_, 305–19.
 - [Raft Refloated: Do We Have Consensus?](consensus/raft-refloated-do-we-have-consensus.pdf)
