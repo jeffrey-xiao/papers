@@ -13,8 +13,10 @@ better understand the material.
 
 ## Blog Posts and Online Articles
 
-- [Strong Consistency Models](https://aphyr.com/posts/313-strong-consistency-models)
 - [Consistency Models](https://jepsen.io/consistency)
+- [Jepsen Analyses](https://jepsen.io/analyses)
+- [Strong Consistency Models](https://aphyr.com/posts/313-strong-consistency-models)
+- [The Log: What every software engineering should know about real-time data's unifying abstraction](https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying)
 
 ## Consensus
 
@@ -34,6 +36,8 @@ better understand the material.
   > Junqueira, Flavio P, Benjamin C Reed, and Marco Serafini. 2011. “Zab: High-Performance Broadcast for Primary-Backup Systems.” In _2011 Ieee/Ifip 41st International Conference on Dependable Systems & Networks (Dsn)_, 245–56. IEEE.
 - [ZooKeeper's Atomic Broadcast Protocol: Theory and Practice](consensus/zookeepers-atomic-broadcast-protocol-theory-and-practice.pdf)
   > Medeiros, André. 2012. “ZooKeeper’s Atomic Broadcast Protocol: Theory and Practice.” _Aalto University School of Science_ 20.
+- [Vive la Différence: Paxos vs. Viewstamped Replication vs. Zab](consensus/viva-la-difference-paxos-vs-viewstamped-replication-vs-zab)
+  > Van Renesse, Robbert, Nicolas Schiper, and Fred B Schneider. 2015. “Vive La Différence: Paxos Vs. Viewstamped Replication Vs. Zab.” *IEEE Transactions on Dependable and Secure Computing* 12 (4). IEEE: 472–84.
 - [In Search of an Understandable Consensus Algorithm](consensus/in-search-of-an-understandable-consensus-algorithm.pdf)
   > Ongaro, Diego, and John Ousterhout. 2014. “In Search of an Understandable Consensus Algorithm.” In _2014 {Usenix} Annual Technical Conference ({Usenix}{ATC} 14)_, 305–19.
 - [Raft Refloated: Do We Have Consensus?](consensus/raft-refloated-do-we-have-consensus.pdf)
@@ -48,6 +52,10 @@ better understand the material.
 
 ## Databases
 
+- [LSM Tree](databases/lsm-tree.pdf)
+  > O’Neil, Patrick, Edward Cheng, Dieter Gawlick, and Elizabeth O’Neil. 1996. “The Log-Structured Merge-Tree (Lsm-Tree).” *Acta Informatica* 33 (4). Springer: 351–85.
+- [bLSM: A General Purpose LSM Tree](databases/blsm-a-general-purpose-lsm-tree.pdf)
+  > Sears, Russell, and Raghu Ramakrishnan. 2012. “BLSM: A General Purpose Log Structured Merge Tree.” In *Proceedings of the 2012 Acm Sigmod International Conference on Management of Data*, 217–28. ACM.
 - [Dynamo: Amazon's Highly Available Key-value Store](databases/dynamo-amazons-highly-available-key-value-store.pdf)
   > DeCandia, Giuseppe, Deniz Hastorun, Madan Jampani, Gunavardhan Kakulapati, Avinash Lakshman, Alex Pilchin, Swaminathan Sivasubramanian, Peter Vosshall, and Werner Vogels. 2007. “Dynamo: Amazon’s Highly Available Key-Value Store.” In _ACM Sigops Operating Systems Review_, 41:205–20. 6. ACM.
 - [Bigtable: A Distributed Storage System for Structured Data](databases/bigtable-a-distributed-storage-system-for-structured-data.pdf)
