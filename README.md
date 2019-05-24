@@ -45,21 +45,14 @@ better understand the material.
 
 ## Data Structures
 
+- [LSM Tree](data-structures/lsm-tree.pdf)
+  > O’Neil, Patrick, Edward Cheng, Dieter Gawlick, and Elizabeth O’Neil. 1996. “The Log-Structured Merge-Tree (Lsm-Tree).” *Acta Informatica* 33 (4). Springer: 351–85.
+- [bLSM: A General Purpose LSM Tree](data-structures/blsm-a-general-purpose-lsm-tree.pdf)
+  > Sears, Russell, and Raghu Ramakrishnan. 2012. “BLSM: A General Purpose Log Structured Merge Tree.” In *Proceedings of the 2012 Acm Sigmod International Conference on Management of Data*, 217–28. ACM.
 - [A Comprehensive Study of Convergent and Commutative Replicated Data Types](data-structures/a-comprehensive-study-of-convergent-and-commutative-replicated-data-types.pdf)
   > Shapiro, Marc, Nuno Preguiça, Carlos Baquero, and Marek Zawirski. 2011. “A Comprehensive Study of Convergent and Commutative Replicated Data Types.” PhD thesis, Inria–Centre Paris-Rocquencourt; INRIA.
 - [Efficient Synchronization of State-based CRDTs](data-structures/efficient-synchronization-of-state-based-crdts.pdf)
   > Enes, Vitor, Paulo Sérgio Almeida, Carlos Baquero, and João Leitão. 2018. “Efficient Synchronization of State-Based Crdts.” _arXiv Preprint arXiv:1803.02750_.
-
-## Databases
-
-- [LSM Tree](databases/lsm-tree.pdf)
-  > O’Neil, Patrick, Edward Cheng, Dieter Gawlick, and Elizabeth O’Neil. 1996. “The Log-Structured Merge-Tree (Lsm-Tree).” *Acta Informatica* 33 (4). Springer: 351–85.
-- [bLSM: A General Purpose LSM Tree](databases/blsm-a-general-purpose-lsm-tree.pdf)
-  > Sears, Russell, and Raghu Ramakrishnan. 2012. “BLSM: A General Purpose Log Structured Merge Tree.” In *Proceedings of the 2012 Acm Sigmod International Conference on Management of Data*, 217–28. ACM.
-- [Dynamo: Amazon's Highly Available Key-value Store](databases/dynamo-amazons-highly-available-key-value-store.pdf)
-  > DeCandia, Giuseppe, Deniz Hastorun, Madan Jampani, Gunavardhan Kakulapati, Avinash Lakshman, Alex Pilchin, Swaminathan Sivasubramanian, Peter Vosshall, and Werner Vogels. 2007. “Dynamo: Amazon’s Highly Available Key-Value Store.” In _ACM Sigops Operating Systems Review_, 41:205–20. 6. ACM.
-- [Bigtable: A Distributed Storage System for Structured Data](databases/bigtable-a-distributed-storage-system-for-structured-data.pdf)
-  > Chang, Fay, Jeffrey Dean, Sanjay Ghemawat, Wilson C Hsieh, Deborah A Wallach, Mike Burrows, Tushar Chandra, Andrew Fikes, and Robert E Gruber. 2008. “Bigtable: A Distributed Storage System for Structured Data.” _ACM Transactions on Computer Systems (TOCS)_ 26 (2). ACM: 4.
 
 ## P2P
 
@@ -67,6 +60,21 @@ better understand the material.
   > Stoica, Ion, Robert Morris, David Liben-Nowell, David R Karger, M Frans Kaashoek, Frank Dabek, and Hari Balakrishnan. 2003. “Chord: A Scalable Peer-to-Peer Lookup Protocol for Internet Applications.” _IEEE/ACM Transactions on Networking (TON)_ 11 (1). IEEE Press: 17–32.
 - [Kademlia: A Peer-to-peer Information System Based on the XOR Metric](p2p/kademlia-a-peer-to-peer-information-system-based-on-the-xor-metric.pdf)
   > Maymounkov, Petar, and David Mazieres. 2002. “Kademlia: A Peer-to-Peer Information System Based on the Xor Metric.” In _International Workshop on Peer-to-Peer Systems_, 53–65. Springer.
+
+## Systems
+
+- [Dynamo: Amazon's Highly Available Key-value Store](systems/dynamo-amazons-highly-available-key-value-store.pdf)
+  > DeCandia, Giuseppe, Deniz Hastorun, Madan Jampani, Gunavardhan Kakulapati, Avinash Lakshman, Alex Pilchin, Swaminathan Sivasubramanian, Peter Vosshall, and Werner Vogels. 2007. “Dynamo: Amazon’s Highly Available Key-Value Store.” In _ACM Sigops Operating Systems Review_, 41:205–20. 6. ACM.
+- [Bigtable: A Distributed Storage System for Structured Data](systems/bigtable-a-distributed-storage-system-for-structured-data.pdf)
+  > Chang, Fay, Jeffrey Dean, Sanjay Ghemawat, Wilson C Hsieh, Deborah A Wallach, Mike Burrows, Tushar Chandra, Andrew Fikes, and Robert E Gruber. 2008. “Bigtable: A Distributed Storage System for Structured Data.” _ACM Transactions on Computer Systems (TOCS)_ 26 (2). ACM: 4.
+- [Cassandra - A Decentralized Structured Storage System](systems/cassandra-a-decentralized-structured-storage-system.pdf)
+  > Lakshman, Avinash, and Prashant Malik. 2010. “Cassandra: A Decentralized Structured Storage System.” *ACM SIGOPS Operating Systems Review* 44 (2). ACM: 35–40.
+- [Kafka: A Distributed Messaging System for Log Processing](systems/kafka-a-distributed-messaging-system-for-log-processing.pdf)
+  > Kreps, Jay, Neha Narkhede, Jun Rao, and others. 2011. “Kafka: A Distributed Messaging System for Log Processing.” In *Proceedings of the Netdb*, 1–7.
+- [Spanner: Google's Globally-Distributed Database](systems/spanner-googles-globally-distributed-database.pdf)
+  > Corbett, James C., Jeffrey Dean, Michael Epstein, Andrew Fikes, Christopher Frost, JJ Furman, Sanjay Ghemawat, et al. 2012. “Spanner: Google’s Globally-Distributed Database.” In *OSDI*.
+- [Spanner: Becoming a SQL System](systems/spanner-becoming-a-sql-system.pdf)
+  > Bacon, David F., Nathan Bales, Nico Bruno, Brian F. Cooper, Adam Dickinson, Andrew Fikes, Campbell Fraser, et al. 2017. “Spanner: Becoming a Sql System.” In *Proc. SIGMOD 2017*, 331–43.
 
 ## Testing
 
