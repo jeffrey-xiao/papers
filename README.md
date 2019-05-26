@@ -45,6 +45,28 @@ better understand the material.
 
 ## Data Structures
 
+- [Fast set operations using treaps](data-structures/fast-set-operations-using-treaps.pdf)
+  > Blelloch, Guy E, and Margaret Reid-Miller. 1998. “Fast Set Operations Using Treaps.” In *SPAA*, 98:16–26.
+- [A Skip List Cookbook](data-structures/a-skip-list-cookbook.pdf)
+  > Pugh, William. 1998. “A Skip List Cookbook.”
+- [Skip Lists: A Probabilistic Alternative to Balanced Trees](data-structures/skip-lists-a-probabilistic-alternative-to-balanced-trees.pdf)
+  > Pugh, William. 1990. “Skip Lists: A Probabilistic Alternative to Balanced Trees.” *Communications of the ACM* 33 (6).
+- [Less hashing, same performance: Building a better Bloom filter](data-structures/less-hashing-same-performance-building-a-better-bloom-filter.pdf)
+  > Kirsch, Adam, and Michael Mitzenmacher. 2006. “Less Hashing, Same Performance: Building a Better Bloom Filter.” In *European Symposium on Algorithms*, 456–67. Springer.
+- [Advanced bloom filter based algorithms for efficient approximate data de-duplication in streams](data-structures/advanced-bloom-filter-based-algorithms-for-efficient-approximate-data-de-duplication-in-streams.pdf)
+  > Bera, Suman K, Sourav Dutta, Ankur Narang, and Souvik Bhattacherjee. 2012. “Advanced Bloom Filter Based Algorithms for Efficient Approximate Data de-Duplication in Streams.” *arXiv Preprint arXiv:1212.3964*.
+- [Cuckoo filter: Practically better than bloom](data-structures/cuckoo-filter-practically-better-than-bloom.pdf)
+  > Fan, Bin, Dave G Andersen, Michael Kaminsky, and Michael D Mitzenmacher. 2014. “Cuckoo Filter: Practically Better Than Bloom.” In *Proceedings of the 10th Acm International on Conference on Emerging Networking Experiments and Technologies*, 75–88. ACM.
+- [Don't thrash: how to cache your hash on flash](data-structures/dont-thrash-how-to-cache-your-hash-on-flash.pdf)
+  > Bender, Michael A, Martin Farach-Colton, Rob Johnson, Russell Kraner, Bradley C Kuszmaul, Dzejla Medjedovic, Pablo Montes, Pradeep Shetty, Richard P Spillane, and Erez Zadok. 2012. “Don’t Thrash: How to Cache Your Hash on Flash.” *Proceedings of the VLDB Endowment* 5 (11). VLDB Endowment: 1627–37.
+- [An improved data stream summary: the count-min sketch and its applications](data-structures/an-improved-data-stream-summary-the-count-min-sketch-and-its-applications.pdf)
+  > Cormode, Graham, and Shan Muthukrishnan. 2005. “An Improved Data Stream Summary: The Count-Min Sketch and Its Applications.” *Journal of Algorithms* 55 (1). Elsevier: 58–75.
+- [A general-purpose counting filter: Making every bit count](data-structures/a-general-purpose-counting-filter-making-every-bit-count.pdf)
+  > Pandey, Prashant, Michael A Bender, Rob Johnson, and Rob Patro. 2017. “A General-Purpose Counting Filter: Making Every Bit Count.” In *Proceedings of the 2017 Acm International Conference on Management of Data*, 775–87. ACM.
+- [HyperLogLog: the analysis of a near-optimal cardinality estimation algorithm](data-structures/hyperloglog-the-analysis-of-a-near-optimal-cardinality-estimation-algorithm.pdf)
+  > Flajolet, Philippe, Éric Fusy, Olivier Gandouet, and Frédéric Meunier. 2007. “Hyperloglog: The Analysis of a Near-Optimal Cardinality Estimation Algorithm.” In *Discrete Mathematics and Theoretical Computer Science*, 137–56. Discrete Mathematics; Theoretical Computer Science.
+- [HyperLogLog in practice: algorithmic engineering of a state of the art cardinality estimation algorithm](data-structures/hyperloglog-in-practice-algorithmic-engineering-of-a-state-of-the-art-cardinality-estimation-algorithm.pdf)
+  > Heule, Stefan, Marc Nunkesser, and Alexander Hall. 2013. “HyperLogLog in Practice: Algorithmic Engineering of a State of the Art Cardinality Estimation Algorithm.” In *Proceedings of the 16th International Conference on Extending Database Technology*, 683–92. ACM.
 - [LSM Tree](data-structures/lsm-tree.pdf)
   > O’Neil, Patrick, Edward Cheng, Dieter Gawlick, and Elizabeth O’Neil. 1996. “The Log-Structured Merge-Tree (Lsm-Tree).” *Acta Informatica* 33 (4). Springer: 351–85.
 - [bLSM: A General Purpose LSM Tree](data-structures/blsm-a-general-purpose-lsm-tree.pdf)
