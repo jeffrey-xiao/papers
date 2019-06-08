@@ -6,11 +6,6 @@ content has a focus on distributed systems.
 I have also included my notes on select resources to summarize important takeaways and to help me
 better understand the material.
 
-## Algorithms
-
-- [Time, Clocks, and the Ordering of Events in a Distributed System](algorithms/time-clocks-and-the-ordering-of-events-in-a-distributed-system.pdf)
-  > Lamport, Leslie. 1978. “Time, Clocks, and the Ordering of Events in a Distributed System.” _Commun. ACM_ 21 (7). New York, NY, USA: ACM: 558–65. <https://doi.org/10.1145/359545.359563>.
-
 ## Blog Posts and Online Articles
 
 - [Consistency Models](https://jepsen.io/consistency)
@@ -20,6 +15,8 @@ better understand the material.
 
 ## Consensus
 
+- [Impossibility of Distributed Consensus with One Faulty Process](consensus/impossibility-of-distributed-consensus-with-one-faulty-process.pdf)
+  > Fischer, Michael J, Nancy A Lynch, and Michael S Paterson. 1982. “Impossibility of Distributed Consensus with One Faulty Process.” MASSACHUSETTS INST OF TECH CAMBRIDGE LAB FOR COMPUTER SCIENCE.
 - [Viewstamped Replication: A New Primary Copy Method to Support Highly-Available Distributed Systems](consensus/viewstamped-replication-a-new-primary-copy-method-to-support-highly-available-distributed-systems.pdf)
   > Oki, Brian M, and Barbara H Liskov. 1988. “Viewstamped Replication: A New Primary Copy Method to Support Highly-Available Distributed Systems.” In _Proceedings of the Seventh Annual Acm Symposium on Principles of Distributed Computing_, 8–17. ACM.
 - [Viewstamped Replication Revisited](consensus/viewstamped-replication-revisited.pdf)
@@ -40,8 +37,26 @@ better understand the material.
   > Van Renesse, Robbert, Nicolas Schiper, and Fred B Schneider. 2015. “Vive La Différence: Paxos Vs. Viewstamped Replication Vs. Zab.” *IEEE Transactions on Dependable and Secure Computing* 12 (4). IEEE: 472–84.
 - [In Search of an Understandable Consensus Algorithm](consensus/in-search-of-an-understandable-consensus-algorithm.pdf)
   > Ongaro, Diego, and John Ousterhout. 2014. “In Search of an Understandable Consensus Algorithm.” In _2014 {Usenix} Annual Technical Conference ({Usenix}{ATC} 14)_, 305–19.
+- [Consensus: Bridging Theory and Practice](consensus/consensus-bridging-theory-and-practice.pdf)
+  > Ongaro, Diego. 2014. “Consensus: Bridging Theory and Practice.” PhD thesis, Stanford University.
 - [Raft Refloated: Do We Have Consensus?](consensus/raft-refloated-do-we-have-consensus.pdf)
   > Howard, Heidi, Malte Schwarzkopf, Anil Madhavapeddy, and Jon Crowcroft. 2015. “Raft Refloated: Do We Have Consensus?” _Operating Systems Review_ 49 (1): 12–21.
+
+## Causality
+
+- [Time, Clocks, and the Ordering of Events in a Distributed System](causality/time-clocks-and-the-ordering-of-events-in-a-distributed-system.pdf)
+  > Lamport, Leslie. 1978. “Time, Clocks, and the Ordering of Events in a Distributed System.” *Communications of the ACM* 21 (7). ACM: 558–65.
+- [Timestamps in Message-Passing Systems That Preserve the Partial Ordering](causality/timestamps-in-message-passing-systems-that-preserve-the-partial-ordering.pdf)
+  > Fidge, Colin J. 1987. *Timestamps in Message-Passing Systems That Preserve the Partial Ordering*. Australian National University. Department of Computer Science.
+- [Virtual Time and Global States of Distributed Systems](causality/virtual-time-and-global-states-of-distributed-systems.pdf)
+  > Mattern, Friedemann, and others. 1988. *Virtual Time and Global States of Distributed Systems*. Citeseer.
+- [Logical Physical Clocks and Consistent Snapshots in Globally Distributed Databases](causality/logical-physical-clocks-and-consistent-snapshots-in-globally-distributed-databases.pdf)
+  > Demirbas, Murat, Marcelo Leone, Bharadwaj Avva, Deepak Madeppa, and Sandeep Kulkarni. 2014. “Logical Physical Clocks and Consistent Snapshots in Globally Distributed Databases.”
+
+## Consistency
+
+- [Brewer's Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services](brewers-conjecture-and-the-feasibility-of-consistent-available-partition-tolerant-web-services.pdf)
+  > Gilbert, Seth, and Nancy Lynch. 2002. “Brewer’s Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services.” *Acm Sigact News* 33 (2). ACM: 51–59.
 
 ## Data Structures
 
@@ -114,4 +129,5 @@ better understand the material.
   - [Volume 4: Persistent Storage](textbooks/operating-systems-principles-and-practice-vol-4-persistent-storage.pdf)
 - [Designing Data-Intensive Applications](textbooks/designing-data-intensive-applications.pdf)
 - [Distributed Systems](textbooks/distributed-systems.pdf)
+- [Distributed Systems for Fun and Profit](http://book.mixu.net/distsys)
 - [Readings in Database Systems](textbooks/readings-in-database-systems.pdf)
