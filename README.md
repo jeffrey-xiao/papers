@@ -130,4 +130,5 @@ better understand the material.
 - [Designing Data-Intensive Applications](textbooks/designing-data-intensive-applications.pdf)
 - [Distributed Systems](textbooks/distributed-systems.pdf)
 - [Distributed Systems for Fun and Profit](http://book.mixu.net/distsys)
+- [Distributed Systems Theory for the Distributed Systems Engineer](https://www.the-paper-trail.org/post/2014-08-09-distributed-systems-theory-for-the-distributed-systems-engineer)
 - [Readings in Database Systems](textbooks/readings-in-database-systems.pdf)
