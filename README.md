@@ -11,6 +11,7 @@ better understand the material.
 - [Consistency Models](https://jepsen.io/consistency)
 - [Jepsen Analyses](https://jepsen.io/analyses)
 - [Strong Consistency Models](https://aphyr.com/posts/313-strong-consistency-models)
+- [Readings in Distributed Systems](http://christophermeiklejohn.com/distributed/systems/2013/07/12/readings-in-distributed-systems.html)
 - [The Log: What every software engineering should know about real-time data's unifying abstraction](https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying)
 
 ## Consensus
