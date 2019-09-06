@@ -16,6 +16,8 @@ better understand the material.
 
 ## Consensus
 
+- [Unreliable Failure Detectors for Reliable Distributed Systems](consensus/unreliable-failure-detectors-for-reliable-distributed-systems.pdf)
+  > Chandra, Tushar Deepak, and Sam Toueg. 1996. “Unreliable Failure Detectors for Reliable Distributed Systems.” *Journal of the ACM (JACM)* 43 (2). ACM: 225–67. 
 - [Impossibility of Distributed Consensus with One Faulty Process](consensus/impossibility-of-distributed-consensus-with-one-faulty-process.pdf)
   > Fischer, Michael J, Nancy A Lynch, and Michael S Paterson. 1982. “Impossibility of Distributed Consensus with One Faulty Process.” MASSACHUSETTS INST OF TECH CAMBRIDGE LAB FOR COMPUTER SCIENCE.
 - [Viewstamped Replication: A New Primary Copy Method to Support Highly-Available Distributed Systems](consensus/viewstamped-replication-a-new-primary-copy-method-to-support-highly-available-distributed-systems.pdf)
