@@ -55,6 +55,8 @@ better understand the material.
   > Mattern, Friedemann, and others. 1988. *Virtual Time and Global States of Distributed Systems*. Citeseer.
 - [Logical Physical Clocks and Consistent Snapshots in Globally Distributed Databases](causality/logical-physical-clocks-and-consistent-snapshots-in-globally-distributed-databases.pdf)
   > Demirbas, Murat, Marcelo Leone, Bharadwaj Avva, Deepak Madeppa, and Sandeep Kulkarni. 2014. “Logical Physical Clocks and Consistent Snapshots in Globally Distributed Databases.”
+- [The Bloom Clock](causality/the-bloom-clock.pdf)
+  > Ramabaja, Lum. 2019. “The Bloom Clock.” *CoRR* abs/1905.13064. <http://arxiv.org/abs/1905.13064>.
 
 ## Consistency
 
