@@ -113,6 +113,7 @@ better understand the material.
   > Lakshman, Avinash, and Prashant Malik. 2010. “Cassandra: A Decentralized Structured Storage System.” *ACM SIGOPS Operating Systems Review* 44 (2). ACM: 35–40.
 - [Kafka: A Distributed Messaging System for Log Processing](systems/kafka-a-distributed-messaging-system-for-log-processing.pdf)
   > Kreps, Jay, Neha Narkhede, Jun Rao, and others. 2011. “Kafka: A Distributed Messaging System for Log Processing.” In *Proceedings of the Netdb*, 1–7.
+- [Readings in Database Systems](textbooks/readings-in-database-systems.pdf)
 - [Spanner: Google's Globally-Distributed Database](systems/spanner-googles-globally-distributed-database.pdf)
   > Corbett, James C., Jeffrey Dean, Michael Epstein, Andrew Fikes, Christopher Frost, JJ Furman, Sanjay Ghemawat, et al. 2012. “Spanner: Google’s Globally-Distributed Database.” In *OSDI*.
 - [Spanner: Becoming a SQL System](systems/spanner-becoming-a-sql-system.pdf)
@@ -124,16 +125,3 @@ better understand the material.
   > Alquraan, Ahmed, Hatem Takruri, Mohammed Alfatafta, and Samer Al-Kiswany. 2018. “An Analysis of Network-Partitioning Failures in Cloud Systems.” In _13th Usenix Symposium on Operating Systems Design and Implementation Osdi 18)_, 51–68.
 - [Why Is Random Testing Effective for Partition Tolerance Bugs?](testing/why-is-random-testing-effective-for-partition-tolerance-bugs.pdf)
   > Majumdar, Rupak, and Filip Niksic. 2017. “Why Is Random Testing Effective for Partition Tolerance Bugs?” _Proceedings of the ACM on Programming Languages_ 2 (POPL). ACM: 46.
-
-## Textbooks
-
-- Operating Systems: Principles and Practice
-  - [Volume 1: Kernels and Processes](textbooks/operating-systems-principles-and-practice-vol-1-kernels-and-processes.pdf)
-  - [Volume 2: Concurrency](textbooks/operating-systems-principles-and-practice-vol-2-concurrency.pdf)
-  - [Volume 3: Memory Management](textbooks/operating-systems-principles-and-practice-vol-3-memory-management.pdf)
-  - [Volume 4: Persistent Storage](textbooks/operating-systems-principles-and-practice-vol-4-persistent-storage.pdf)
-- [Designing Data-Intensive Applications](textbooks/designing-data-intensive-applications.pdf)
-- [Distributed Systems](textbooks/distributed-systems.pdf)
-- [Distributed Systems for Fun and Profit](http://book.mixu.net/distsys)
-- [Distributed Systems Theory for the Distributed Systems Engineer](https://www.the-paper-trail.org/post/2014-08-09-distributed-systems-theory-for-the-distributed-systems-engineer)
-- [Readings in Database Systems](textbooks/readings-in-database-systems.pdf)
